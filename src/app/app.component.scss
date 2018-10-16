@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+@import 'src/app-themes.scss';
+
+.icon-gutter {
+    padding: 0 0 0 0.4em;
+  }
+
+  .header-spacer {
+    flex: 1 1 auto;
+  }
+
+header 
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: mat-color($app-primary);
+  padding-bottom: 0.4em;
+}

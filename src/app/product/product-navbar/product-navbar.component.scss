@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+@import '../../../../src/app-themes.scss';
+
+
+nav a 
+{
+    display:flex;
+    flex-direction: column;
+   justify-content: center;
+}
+
+nav {
+    background-color: white;
+    margin-left :1em;
+    margin-right :1em;
+   
+      
+}
+
+.mat-tab-link 
+{
+    background-color: rgb(232,232,232);
+}
+
+.mat-tab-label-active
+{
+    background-color: white;
+    color: mat-color($app-accent);
+    -webkit-text-fill-color: mat-color($app-accent);
+    
+}
+

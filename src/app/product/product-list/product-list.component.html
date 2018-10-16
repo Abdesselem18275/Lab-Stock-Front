@@ -1,0 +1,6 @@
+
+<app-search-bar (results)=updateResults($event)></app-search-bar>
+<mat-list>
+<app-product-detail *ngFor="let product of products" [product]="product"></app-product-detail>
+</mat-list>
+
