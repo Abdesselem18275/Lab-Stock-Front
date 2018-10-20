@@ -3,10 +3,14 @@
     margin-top: 0.5em;
     margin-bottom: 0.3em;
     -webkit-text-fill-color: black;
+    padding-right: 1em;
+    padding-left : 1em;
+    
+    
 
 }
 :host input 
 {
-    width: 100%;
-    border-radius: 2em 2em 2em 2em;
+    width : 90%;
+    
 }

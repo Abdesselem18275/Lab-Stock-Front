@@ -2,11 +2,11 @@
 @import '../../../../src/app-themes.scss';
 
 
-nav a 
+.mat-tab-link 
 {
     display:flex;
     flex-direction: column;
-   justify-content: center;
+    justify-content: center;
 }
 
 nav {
@@ -25,8 +25,12 @@ nav {
 .mat-tab-label-active
 {
     background-color: white;
-    color: mat-color($app-accent);
     -webkit-text-fill-color: mat-color($app-accent);
     
+}
+
+.mat-tab-label-active mat-icon 
+{
+    color: mat-color($app-accent);
 }
 

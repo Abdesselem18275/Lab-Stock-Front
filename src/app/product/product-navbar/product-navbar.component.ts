@@ -26,6 +26,7 @@ export class ProductNavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 }
