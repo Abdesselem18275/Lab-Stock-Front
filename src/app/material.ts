@@ -7,12 +7,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 
 
-
-
-
-
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule,MatToolbarModule,MatIconModule,MatTabsModule,MatListModule,MatInputModule],
-  exports: [MatButtonModule, MatCheckboxModule,MatToolbarModule,MatIconModule,MatTabsModule,MatListModule,MatInputModule],
+  imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatTabsModule, MatListModule, MatInputModule],
+  exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatTabsModule, MatListModule, MatInputModule],
 })
-export class MaterialModule { }
+export class MaterialModule {}

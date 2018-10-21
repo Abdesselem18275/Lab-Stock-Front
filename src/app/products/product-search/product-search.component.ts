@@ -4,7 +4,6 @@ import {fromEvent} from 'rxjs';
 import { map, switchAll } from 'rxjs/operators';
 import { Product } from '../../model';
 
-
 @Component({
   selector: 'app-search-bar',
   template: '<input type="text" autofocus>',

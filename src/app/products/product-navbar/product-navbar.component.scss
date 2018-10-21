@@ -1,26 +1,31 @@
 @import '~@angular/material/theming';
 @import '../../../../src/app-themes.scss';
 
+.mat-headline
+{
+    font-weight: bold;
+}
+
+.nav-divider
+{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: white;
+    margin-left :1em;
+    margin-right :1em;
+}
 
 .mat-tab-link 
 {
     display:flex;
     flex-direction: column;
     justify-content: center;
-}
-
-nav {
-    background-color: white;
-    margin-left :1em;
-    margin-right :1em;
-   
-      
-}
-
-.mat-tab-link 
-{
     background-color: rgb(232,232,232);
 }
+
+
+   
 
 .mat-tab-label-active
 {

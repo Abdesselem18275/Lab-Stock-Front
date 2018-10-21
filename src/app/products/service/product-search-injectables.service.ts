@@ -1,5 +1,5 @@
 import {
-  ProductSearchService,API_URL
+  ProductSearchService, API_URL
 } from './product-search.service' ;
 
 
