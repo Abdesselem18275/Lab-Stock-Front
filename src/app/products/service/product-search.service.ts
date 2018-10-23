@@ -29,7 +29,7 @@ export class ProductSearchService {
     get_products_search(value): Observable<Product[]> {
        const query: string = [
       this.apiUrl,
-      '/products/',
+      '/products_search/',
        value
      ].join('');
 
