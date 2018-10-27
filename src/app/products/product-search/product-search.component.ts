@@ -1,8 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, ElementRef } from '@angular/core';
-import { ProductSearchService } from '../service/product-search.service';
 import {fromEvent} from 'rxjs';
-import { map, switchAll } from 'rxjs/operators';
-import { Product } from '../../model';
+import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute , NavigationEnd } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
@@ -31,12 +29,11 @@ export class ProductSearchComponent implements OnInit {
     this.router.events
     .subscribe((event) => {
     if (event instanceof NavigationEnd) {
-      console.log('NavigationEnd:***************', event.url);
       event.url.search('/product-list') === -1  ?
       this.isDetailActive = true :
       this.isDetailActive = false;
       }
-    }
+    });
 
   }
 

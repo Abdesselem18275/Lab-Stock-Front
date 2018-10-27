@@ -4,11 +4,14 @@ import { Router, NavigationEnd } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 
 
+
+
 @Component({
   selector: 'app-product-header',
   templateUrl: './product-header.component.html',
   styleUrls: ['./product-header.component.scss']
 })
+
 export class ProductHeaderComponent implements OnInit {
   isDetailActive: Boolean;
 
@@ -17,7 +20,7 @@ export class ProductHeaderComponent implements OnInit {
   ngOnInit() {
 
     this.router.events
-    .subscribe((event) => {
+    .subscribe(event => {
     if (event instanceof NavigationEnd) {
       console.log('NavigationEnd:***************', event.url);
       event.url.search('/product-list') === -1  ?
