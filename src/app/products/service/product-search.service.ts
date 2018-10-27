@@ -20,16 +20,16 @@ export class ProductSearchService {
 
     private get_result(query: string): Observable<Product[]> {
         return this.http.get(query).pipe(
-        map((jsonArray: Object[]) => jsonArray.map(jsonItem => Product.fromJson(jsonItem)))
+        map((jsonArray: Product[]) => jsonArray.map(jsonItem => Product.fromJson(jsonItem)))
       );
 
     }
 
 
-    get_products_search(value): Observable<Product[]> {
+    get_products(value): Observable<Product[]> {
        const query: string = [
       this.apiUrl,
-      '/products_search/',
+      '/products/',
        value
      ].join('');
 
@@ -40,23 +40,16 @@ export class ProductSearchService {
     get_product(value): Observable<Product> {
       const query: string = [
      this.apiUrl,
-     '/products/',
+     '/product/',
       value
     ].join('');
 
-    return this.get_result(query).pipe(
-      map((products: Product[]) => products[0])
-    );
+    return this.http.get(query).pipe(
+      map((jsonItem: Product)  => Product.fromJson(jsonItem))
+     );
 
    }
 
-    get_products(): Observable<Product[]> {
-      const query: string = [
-       this.apiUrl,
-       '/products/'
-      ].join('');
-      return this.get_result(query);
-   }
 
 
   }

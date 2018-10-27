@@ -1,7 +1,7 @@
-<app-search-bar (results)=updateResults($event)></app-search-bar>
-<mat-list>
 
-<mat-list-item *ngFor="let product of products">
+<mat-list class="mat-elevation-z1">
+
+<mat-list-item *ngFor="let product of products$ | async">
 
     <h1 matLine class="mat-headline" >
         <a [routerLink]="['/product', product.id]">

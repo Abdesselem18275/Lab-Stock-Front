@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Product} from '../../model';
 import { ProductSearchService } from '../service/product-search.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-product-list',
@@ -9,19 +13,24 @@ import { ProductSearchService } from '../service/product-search.service';
 })
 export class ProductListComponent implements OnInit {
 
-  public products: Product[];
-  public message_a: string ;
+  products$: Observable<Product[]>;
 
-  constructor(private productData: ProductSearchService) { }
+  constructor(private productData: ProductSearchService , private route: ActivatedRoute) {
+  }
 
   is_empty(): boolean {return false; }
 
   ngOnInit() {
-     this.productData.get_products().subscribe(products => this.products = products);
-  }
+     this.products$ = this.route.paramMap.pipe(
+      switchMap(params => {
+        return this.productData.get_products(params.get('val'));
+      })
+      );
+   }
 
-  updateResults(results: Product[]) {
-   this.products = results;
-  }
+
+
+
+
 
 }

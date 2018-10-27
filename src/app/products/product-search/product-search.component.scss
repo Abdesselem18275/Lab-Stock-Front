@@ -1,16 +1,58 @@
-:host
-{
-    margin-top: 0.5em;
-    margin-bottom: 0.3em;
-    -webkit-text-fill-color: black;
-    padding-right: 1em;
-    padding-left : 1em;
+@import '~@angular/material/theming';
+@import 'src/app-themes.scss';
+
+.icon-gutter {
+    padding: 0 0 0 0.4em;
     
+  }
+
+.input-gutter {
+    margin: 0 0 1em 0;
     
+  }
+.menu-gutter {
+  padding: 0 0.4em 0 0;
+}
+
+.search-face {
+  font-size: 0.7em;
+  border-bottom-style: inset;
+  border-bottom-color: white;
+  border-bottom-width: 0.05em;
+  height: 1.05em;
+ }
+
+ 
+
+.input-face {
+  
+  font-size: 0.6em;
+  border-color: rgb(186,196,212);
+  
 
 }
-:host input 
+
+.no-gutter
 {
-    width : 90%;
-    
+  padding : 0 0 0 0 ; 
+  
+}
+  
+
+  .header-spacer {
+    flex: 1 1 auto;
+  }
+
+
+
+.hidden
+{
+  display:none;
+}
+
+
+
+.arrow-face 
+{
+  font-size: 1em;
 }
