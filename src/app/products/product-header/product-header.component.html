@@ -1,2 +1,4 @@
-<app-product-search> </app-product-search>
-<app-product-navbar></app-product-navbar>
+<app-product-search [isDetailActive]="isDetailActive"  (isSearchActive$)="onclickSearchBar($event)"> 
+
+</app-product-search>
+<app-product-navbar *ngIf="!isSearchActive"></app-product-navbar>

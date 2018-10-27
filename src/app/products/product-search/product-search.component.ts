@@ -1,8 +1,8 @@
-import { Component, OnInit, EventEmitter, Output, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, ElementRef, Input, EventEmitter } from '@angular/core';
 import {fromEvent} from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute , NavigationEnd } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -11,38 +11,31 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./product-search.component.scss']
 })
 export class ProductSearchComponent implements OnInit {
-  @Output()
-  isActive: boolean;
-  isDetailActive: boolean ;
-  searchBar = new FormControl('');
+
+  isSearchActive: boolean;
+  @Input()  isDetailActive: boolean ;
+  @Output() isSearchActive$ = new EventEmitter<boolean>();
+  searchFrom = new FormGroup({
+    searchBar: new FormControl()});
 
   constructor(private route: ActivatedRoute, private router: Router, private el: ElementRef) { }
 
   ngOnInit() {
-    this.isActive = false;
     fromEvent(this.el.nativeElement, 'keyup').pipe(
            map((e: any) => e.target.value)).
            subscribe((value: string) => {
              this.router.navigate(['/product-list', { val: value}]);
            });
-
-    this.router.events
-    .subscribe((event) => {
-    if (event instanceof NavigationEnd) {
-      event.url.search('/product-list') === -1  ?
-      this.isDetailActive = true :
-      this.isDetailActive = false;
-      }
-    });
-
   }
 
   activeInput() {
-    this.isActive = true;
+    this.isSearchActive = true;
+    this.isSearchActive$.emit(true);
   }
 
   disableInput() {
-    this.isActive = false;
-    this.searchBar.setValue('');
+    this.isSearchActive = false;
+    this.searchFrom.reset({searchBar : ''});
+    this.isSearchActive$.emit(false);
   }
 }

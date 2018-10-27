@@ -1,17 +1,21 @@
 <mat-toolbar color="primary" class="no-gutter">
 
 
-    <mat-icon *ngIf="!(isActive||isDetailActive)"   class="material-icons menu-gutter">menu</mat-icon>
+    <mat-icon *ngIf="(!isSearchActive && !isDetailActive)"   class="material-icons menu-gutter">menu</mat-icon>
 
 
-    <mat-icon (click)="disableInput()"    [class.hidden]="!isActive || isDetailActive" class="material-icons menu-gutter arrow-face">arrow_back_ios</mat-icon>
-    <mat-icon [class.hidden]="isActive||isDetailActive"   class="material-icons search-face">search</mat-icon>
-    <mat-form-field  [class.hidden]="isDetailActive" class="input-gutter header-spacer input-face" appearance="standard">
-    <input  matInput (click)="activeInput()"  matInput formControlName="searchBar">
+    <mat-icon (click)="disableInput()" [class.hidden]="!isSearchActive || isDetailActive" class="material-icons menu-gutter arrow-face">arrow_back_ios</mat-icon>
+    <span *ngIf="!isSearchActive" class="header-spacer"></span>
+    
+    <form *ngIf="(isSearchActive && !isDetailActive)" [formGroup]="searchFrom">
+    <mat-form-field matInput  class="input-gutter header-spacer input-face" appearance="standard">
+    <input  matInput formControlName="searchBar" placeholder="Rechercher">
     </mat-form-field>
+    </form>
 
-    <mat-icon [class.hidden]="isActive||isDetailActive" class="icon-gutter material-icons ">filter_list</mat-icon>
-    <mat-icon [class.hidden]="isActive||isDetailActive" class="icon-gutter material-icons">add</mat-icon>
+
+    <mat-icon (click)="activeInput()" [class.hidden]="isSearchActive||isDetailActive" class="icon-gutter material-icons ">search</mat-icon>
+    <mat-icon [class.hidden]="isSearchActive||isDetailActive" class="icon-gutter material-icons">add</mat-icon>
 
 
     <mat-icon [class.hidden]="!(isDetailActive)"   class="material-icons menu-gutter">arrow_back_ios</mat-icon>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {NavPath} from '../../model';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material';
@@ -11,7 +11,6 @@ import {MatIconRegistry} from '@angular/material';
 export class ProductNavbarComponent implements OnInit {
   navpaths: NavPath[] ;
   activeLink: String ;
-
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
 
