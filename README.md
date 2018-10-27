@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LabStockProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.2.
@@ -25,3 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+=======
+# lab-stock-front
+Lab stock front end
+>>>>>>> 414dabfbee1f23470a246ecf0211aae9e1e7940c
