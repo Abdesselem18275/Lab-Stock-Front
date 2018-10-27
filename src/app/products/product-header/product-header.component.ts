@@ -24,8 +24,7 @@ export class ProductHeaderComponent implements OnInit {
       this.isDetailActive = true :
       this.isDetailActive = false;
       }
-    }
-
+    });
   }
 }
 
