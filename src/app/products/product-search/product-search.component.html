@@ -1,6 +1,8 @@
 <mat-toolbar color="primary" class="no-gutter">
 
+         
 
+    <mat-icon [routerLink]="['/product-list']" [class.hidden]="!(isDetailActive)"   class="material-icons menu-gutter">arrow_back_ios</mat-icon>
     <mat-icon *ngIf="(!isSearchActive && !isDetailActive)"   class="material-icons menu-gutter">menu</mat-icon>
 
 
@@ -17,7 +19,8 @@
     <mat-icon (click)="activeInput()" [class.hidden]="isSearchActive||isDetailActive" class="icon-gutter material-icons ">search</mat-icon>
     <mat-icon [class.hidden]="isSearchActive||isDetailActive" class="icon-gutter material-icons">add</mat-icon>
 
+    <mat-icon [class.hidden]="!isDetailActive" class="icon-gutter material-icons">remove</mat-icon>
+    <mat-icon [class.hidden]="!isDetailActive" class="icon-gutter material-icons">check</mat-icon>
 
-    <mat-icon [class.hidden]="!(isDetailActive)"   class="material-icons menu-gutter">arrow_back_ios</mat-icon>
 
 </mat-toolbar>  

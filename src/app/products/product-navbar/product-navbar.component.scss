@@ -3,7 +3,7 @@
 
 .mat-headline
 {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .nav-divider
@@ -11,31 +11,34 @@
     display:flex;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: white;
+    
+}
+
+a {
+
+    flex-grow : 0 ;
+ 
     
 }
 
 .mat-tab-link 
 {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: rgb(232,232,232);
+    
+    background-color:  mat-color($app-primary);
+    -webkit-text-fill-color: white;
+    height: 1.8em;
+    font-size: 0.8em;
+    
     
 }
 
-
-   
+.mat-ink-bar
+{
+    background-color: white;
+}
 
 .mat-tab-label-active
 {
-    background-color: white;
-    -webkit-text-fill-color: mat-color($app-accent);
-    
+    -webkit-text-fill-color: white;
+    background-color: mat-color($app-primary);
 }
-
-.mat-tab-label-active mat-icon 
-{
-    color: mat-color($app-accent);
-}
-

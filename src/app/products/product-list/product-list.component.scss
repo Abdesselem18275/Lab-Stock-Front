@@ -1,5 +1,20 @@
-
-
-mat-list-item:nth-child(even){
+article:nth-child(even){
     background-color: rgb(235,235,235);
 }
+
+article {
+   display : flex ; 
+   justify-content: space-between;
+   padding: 0.4em 0.4em 0 0.4em ;
+   font-family: 'Cabin', sans-serif;
+}
+
+div p {
+}
+h3{
+    
+    font-weight: 900;
+    margin-bottom: 0em;
+
+}
+

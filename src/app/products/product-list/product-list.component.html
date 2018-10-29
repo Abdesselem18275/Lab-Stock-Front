@@ -1,18 +1,12 @@
 
-<mat-list class="mat-elevation-z1">
 
-<mat-list-item *ngFor="let product of products$ | async">
+<article [routerLink]="['/product', product.id]" class="mat-typography" *ngFor="let product of products$ | async" >
+        
+        <div> 
+            <h3>{{product.designation}}</h3>
+            <h5>{{product.familles}} - <span>{{product.laboratoires}}</span></h5>  
+        </div>
+        <h5>25-08-2018</h5>
 
-    <h1 matLine class="mat-headline" >
-        <a [routerLink]="['/product', product.id]">
-           {{product.designation}}
-        </a>
-    </h1>
-    
-    <p class="mat-body-1" matLine>{{product.familles}} <span>-</span> <span>{{product.laboratoires}}</span></p>  
-    <p class="float_right">{{product.creation_date | date}}</p>
-
-</mat-list-item>
-
-</mat-list>
+</article>
 
