@@ -1,7 +1,7 @@
 export class Product {
     id : number ;
-    familles : string ; 
-    laboratoires : string ; 
+    familles : Famille ; 
+    laboratoires : Laboratoire ; 
     designation : string ;
     reference : string ;
     creation_date : Date ;  
@@ -27,8 +27,8 @@ export class Product {
     public static fromJson(json: Object): Product {
         return new Product({
             id:json['id'],
-            familles:json['familles'],
-            laboratoires:json['laboratoires'],
+            familles:Famille.fromJson(json),
+            laboratoires:Laboratoire.fromJson(json),
             designation:json['designation'],
             reference:json['reference'],
             creation_date:new Date(json['creation_date']),
@@ -44,6 +44,59 @@ export class Product {
 
    
 }
+
+export class Famille {
+    id: number ;
+    designation: string ;
+  
+    constructor(obj?: any)
+    {
+        this.id= obj && obj.id || null;
+        this.designation= obj && obj.designation || null;
+  
+    }
+
+    public static fromJson(json: Object): Famille {
+        return new Famille({
+            id:json['id'],
+            designation:json['designation'],
+        }
+
+
+        );
+    }
+
+   
+}
+
+export class Laboratoire {
+    id: number ;
+    designation: string ;
+  
+    constructor(obj?: any)
+    {
+        this.id= obj && obj.id || null;
+        this.designation= obj && obj.designation || null;
+  
+    }
+
+    public static fromJson(json: Object): Laboratoire {
+        return new Laboratoire({
+            id:json['id'],
+            designation:json['designation'],
+        }
+
+
+        );
+    }
+
+   
+}
+
+
+
+
+
 
 export class NavPath {
     label : string ; 

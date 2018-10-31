@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model';
 import { ProductSearchService } from '../service/product-search.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 
 
 
@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
     private fb: FormBuilder) {
 
       this.productForm = this.fb.group({
-        designation : [''],
+        designation : ['', Validators.required],
         laboratoire : [''],
         famille : [''],
         contenantCoffret : [''],
@@ -41,13 +41,13 @@ export class ProductDetailComponent implements OnInit {
     switchMap((params: ParamMap) =>
     this.service.get_product(params.get('id')))
     );
-    this.product$.subscribe((val: Product) => (this.resetForm(val)));
+    this.product$.subscribe((val: Product) => (this.updateFrom(val)));
   }
-  resetForm (product: Product) {
-    this.productForm.reset({
+  updateFrom (product: Product) {
+    this.productForm.patchValue({
       designation : [product.designation],
-      laboratoire : [product.laboratoires],
-      famille : [product.familles],
+      laboratoire : [product.laboratoires.designation],
+      famille : [product.familles.designation],
       contenantCoffret : [product.contenantCoffret],
       testContenant : [product.testContenant],
       cmm : [product.cmm],

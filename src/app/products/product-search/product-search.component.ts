@@ -37,5 +37,6 @@ export class ProductSearchComponent implements OnInit {
     this.isSearchActive = false;
     this.searchFrom.reset({searchBar : ''});
     this.isSearchActive$.emit(false);
+    this.router.navigate(['/product-list']);
   }
 }

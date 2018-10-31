@@ -20,7 +20,7 @@ export class ProductSearchService {
 
     private get_result(query: string): Observable<Product[]> {
         return this.http.get(query).pipe(
-        map((jsonArray: Product[]) => jsonArray.map(jsonItem => Product.fromJson(jsonItem)))
+        map((jsonArray: Product[]) => jsonArray.map(jsonItem => Product.fromJson(jsonItem) ))
       );
 
     }
