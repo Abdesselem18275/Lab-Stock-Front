@@ -27,8 +27,8 @@ export class Product {
     public static fromJson(json: Object): Product {
         return new Product({
             id:json['id'],
-            familles:Famille.fromJson(json),
-            laboratoires:Laboratoire.fromJson(json),
+            familles:Famille.fromJson(json['familles']),
+            laboratoires:Laboratoire.fromJson(json['laboratoires']),
             designation:json['designation'],
             reference:json['reference'],
             creation_date:new Date(json['creation_date']),

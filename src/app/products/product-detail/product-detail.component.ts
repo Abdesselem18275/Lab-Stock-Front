@@ -29,10 +29,12 @@ export class ProductDetailComponent implements OnInit {
         designation : ['', Validators.required],
         laboratoire : [''],
         famille : [''],
+        conditionnement : this.fb.group({
         contenantCoffret : [''],
-        testContenant : [''],
+        testContenant : ['']}),
+        stock : this.fb.group({
         cmm : [''],
-        stockMiniMois : [''],
+        stockMiniMois : ['']})
       });
   }
 
@@ -48,10 +50,12 @@ export class ProductDetailComponent implements OnInit {
       designation : [product.designation],
       laboratoire : [product.laboratoires.designation],
       famille : [product.familles.designation],
+      conditionnement : {
       contenantCoffret : [product.contenantCoffret],
-      testContenant : [product.testContenant],
+      testContenant : [product.testContenant] },
+      stock : {
       cmm : [product.cmm],
-      stockMiniMois : [product.StockMiniMois],
+      stockMiniMois : [product.StockMiniMois] }
     });
 
   }
