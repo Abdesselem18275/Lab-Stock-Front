@@ -66,7 +66,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.productForm.value);
+    console.warn(this.productForm.value); 
   }
 
 }
