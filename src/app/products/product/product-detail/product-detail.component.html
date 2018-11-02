@@ -1,4 +1,13 @@
-<form [formGroup]="productForm" class="form-gutter" *ngIf="product$ | async as product">
+<header class="mat-elevation-z1 mat-typography">
+    <mat-icon [routerLink]="['../list']" id="back_ico" class="material-icons icon-style">arrow_back_ios</mat-icon>
+    <span  id="head_text" class="icon-style">Modifier Produit</span>
+    <span  class="header-spacer"></span>
+    <mat-icon class="icon-style material-icons ">delete</mat-icon>
+    <mat-icon id="save_ico" (click)="productForm.disable()" class="icon-style material-icons">save</mat-icon>
+</header>
+
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="product$ | async as product">
     <mat-form-field class="full-width field-gutter field-face" appearance="fill">
         <mat-label>Designation</mat-label>
         <input matInput formControlName="designation">

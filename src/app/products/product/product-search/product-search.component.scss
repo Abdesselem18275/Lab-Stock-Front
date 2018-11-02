@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import 'src/app-themes.scss';
+@import '../../../../app-themes.scss';
 
 
 form{
@@ -7,7 +7,8 @@ width:100%;
 }
 
 .icon-gutter {
-    padding: 0 0 0 0.4em;
+    padding: 0 0 0 1em;
+
     
   }
 
@@ -16,7 +17,7 @@ width:100%;
     
   }
 .menu-gutter {
-  padding: 0 0.4em 0 0;
+  padding: 0 1.32em 0 0;
 }
 
 .search-face {
@@ -48,14 +49,6 @@ width:100%;
   .header-spacer {
     flex: 1 1 auto;
   }
-
-
-
-.hidden
-{
-  display:none;
-}
-
 
 
 .arrow-face 

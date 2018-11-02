@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import '../../../../src/app-themes.scss';
+@import '../../../../app-themes.scss';
 
 .mat-headline
 {
@@ -26,8 +26,8 @@ a {
     
     background-color:  mat-color($app-primary);
     -webkit-text-fill-color: white;
-    height: 1.8em;
-    font-size: 0.8em;
+    height: 3.5em;
+    font-size: 0.9em;
     
     
 }

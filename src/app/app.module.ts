@@ -5,7 +5,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material';
 
 import { AppComponent } from './app.component';
-import { LabListComponent } from './laboratoire/lab-list/lab-list/lab-list.component';
 import { PageNotFoundComponent} from './page-not-found/page-not-found/page-not-found.component';
 import { ProductSearchInjectables} from './products/service/product-search-injectables.service';
 import { ProductsModule } from './products/products.module';
@@ -15,7 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    LabListComponent
   ],
   imports: [
     BrowserModule,

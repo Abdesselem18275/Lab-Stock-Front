@@ -3,7 +3,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/model';
-import { ProductSearchService } from '../service/product-search.service';
+import { ProductSearchService } from '../../service/product-search.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 
 
@@ -39,12 +39,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('***************Hello*********************');
     this.product$ = this.route.paramMap.pipe(
     switchMap((params: ParamMap) =>
     this.service.get_product(params.get('id')))
     );
-    this.product$.subscribe((val: Product) => (this.updateFrom(val)));
-  }
+    this.product$.subscribe((val: Product) => {
+      this.updateFrom(val);
+      console.log('the id is ' + val);
+    }
+    );
+    }
   updateFrom (product: Product) {
     this.productForm.patchValue({
       designation : [product.designation],
@@ -58,6 +63,10 @@ export class ProductDetailComponent implements OnInit {
       stockMiniMois : [product.StockMiniMois] }
     });
 
+  }
+
+  onSubmit() {
+    console.warn(this.productForm.value);
   }
 
 }

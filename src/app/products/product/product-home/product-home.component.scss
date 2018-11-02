@@ -1,7 +1,5 @@
 @import '~@angular/material/theming';
-@import 'src/app-themes.scss';
-
-
+@import '../../../../app-themes.scss';
 
 :host {
  margin : 0 0 0.4em 0;
@@ -13,6 +11,6 @@ header
   flex-direction: column;
   justify-content: flex-start;
   background-color: mat-color($app-primary);
-  padding : 0 0.8em 0.8em 0.8em ;
+  padding : 0 1.134em 0.67em 1.134em ;
   margin :  0 0 0.4em 0 ;
 }
