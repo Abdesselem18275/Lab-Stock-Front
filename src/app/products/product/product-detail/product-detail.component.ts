@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, startWith } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Product } from 'src/app/model';
-import { ProductSearchService } from '../../service/product-search.service';
+import { Observable, of, observable } from 'rxjs';
+import { Product , Famille } from 'src/app/model';
+import { ProductsDataService } from '../../service/products-data.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 
 
@@ -16,41 +16,54 @@ import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 export class ProductDetailComponent implements OnInit {
   product$: Observable<Product>;
   productForm: FormGroup;
-  url: Observable<string> ;
-
-
+  familleOptions: string[]  = ['One', 'Two', 'Three'];
+  laboratoireOptions: string[] = ['One', 'Two', 'Three'];
+  filteredFamilleOptions: Observable<string[]>;
+  filteredLaboratoirOptions: Observable<string[]>;
 
   constructor(
     private route: ActivatedRoute,
-    private service: ProductSearchService,
+    private service: ProductsDataService,
     private fb: FormBuilder) {
 
       this.productForm = this.fb.group({
         designation : ['', Validators.required],
-        laboratoire : [''],
-        famille : [''],
+        laboratoire : ['', Validators.required],
+        famille : ['', Validators.required],
         conditionnement : this.fb.group({
-        contenantCoffret : [''],
-        testContenant : ['']}),
+        contenantCoffret : ['', Validators.required],
+        testContenant : ['', Validators.required]}),
         stock : this.fb.group({
-        cmm : [''],
-        stockMiniMois : ['']})
+        cmm : ['', Validators.required],
+        stockMiniMois : ['', Validators.required]})
       });
   }
 
   ngOnInit() {
-    console.log('***************Hello*********************');
+
+
     this.product$ = this.route.paramMap.pipe(
     switchMap((params: ParamMap) =>
-    this.service.get_product(params.get('id')))
-    );
+    this.service.get_product(params.get('id'))));
     this.product$.subscribe((val: Product) => {
-      this.updateFrom(val);
+      this._updateFrom(val);
       console.log('the id is ' + val);
+    });
+    this.filteredFamilleOptions = this.productForm.get('famille').valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
     }
-    );
-    }
-  updateFrom (product: Product) {
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.familleOptions.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+
+  private _updateFrom (product: Product) {
     this.productForm.patchValue({
       designation : [product.designation],
       laboratoire : [product.laboratoires.designation],

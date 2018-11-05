@@ -5,10 +5,16 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatTabsModule, MatListModule, MatInputModule],
-  exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule, MatTabsModule, MatListModule, MatInputModule],
+  // tslint:disable-next-line:max-line-length
+  imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule,
+            MatTabsModule, MatListModule, MatInputModule, MatAutocompleteModule],
+  exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule,
+            MatTabsModule, MatListModule, MatInputModule, MatAutocompleteModule],
 })
 export class MaterialModule {}

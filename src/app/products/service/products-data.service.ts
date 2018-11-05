@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../../model';
+import { Product, Famille} from '../../model';
 import { map } from 'rxjs/operators';
 
 
@@ -14,7 +14,7 @@ export const API_URL = 'https://labstock-api.herokuapp.com';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductSearchService {
+export class ProductsDataService {
 
   constructor(private http: HttpClient , @Inject(API_URL) private apiUrl: string) { }
 
@@ -51,5 +51,36 @@ export class ProductSearchService {
    }
 
 
+   private get_result_famille(query: string): Observable<Famille[]> {
+    return this.http.get(query).pipe(
+    map((jsonArray: Famille[]) => jsonArray.map(jsonItem => Famille.fromJson(jsonItem) ))
+  );
+
+}
+
+
+get_familles(value): Observable<Famille[]> {
+   const query: string = [
+  this.apiUrl,
+  '/familles/',
+   value
+ ].join('');
+
+ return this.get_result_famille(query);
+
+}
+
+get_famille(value): Observable<Famille> {
+  const query: string = [
+ this.apiUrl,
+ '/famille/',
+  value
+].join('');
+
+return this.http.get(query).pipe(
+  map((jsonItem: Famille)  => Famille.fromJson(jsonItem))
+ );
+
+}
 
   }

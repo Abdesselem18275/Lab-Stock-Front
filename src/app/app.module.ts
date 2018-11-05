@@ -6,7 +6,7 @@ import {MaterialModule} from './material';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent} from './page-not-found/page-not-found/page-not-found.component';
-import { ProductSearchInjectables} from './products/service/product-search-injectables.service';
+import { ProductsDataInjectables} from './products/service/products-data-injectables.service';
 import { ProductsModule } from './products/products.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     ProductsModule,
     AppRoutingModule
   ],
-  providers: [ProductSearchInjectables],
+  providers: [ProductsDataInjectables],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

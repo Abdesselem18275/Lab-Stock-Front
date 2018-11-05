@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Router, ActivatedRoute , NavigationEnd } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/model';
-import { ProductSearchService } from '../../service/product-search.service';
+import { ProductsDataService } from '../../service/products-data.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class ProductSearchComponent implements OnInit {
   searchFrom = new FormGroup({
   searchBar: new FormControl()});
 
-  constructor(private productData: ProductSearchService , private route: ActivatedRoute, private router: Router, private el: ElementRef) {  
+  constructor(private productData: ProductsDataService , private route: ActivatedRoute, private router: Router, private el: ElementRef) {  
   }
 
   ngOnInit() {
