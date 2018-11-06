@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { map, switchMap, startWith } from 'rxjs/operators';
+import { map, switchMap, startWith, filter } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable, of, observable } from 'rxjs';
-import { Product , Famille } from 'src/app/model';
+import { Product , Famille , Laboratoire} from 'src/app/model';
 import { ProductsDataService } from '../../service/products-data.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 
@@ -15,11 +15,9 @@ import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 })
 export class ProductDetailComponent implements OnInit {
   product$: Observable<Product>;
+  familles$: Observable<Famille[]>;
+  laboratoires$: Observable<Laboratoire[]>;
   productForm: FormGroup;
-  familleOptions: string[]  = ['One', 'Two', 'Three'];
-  laboratoireOptions: string[] = ['One', 'Two', 'Three'];
-  filteredFamilleOptions: Observable<string[]>;
-  filteredLaboratoirOptions: Observable<string[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,26 +39,20 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
 
+    this.familles$ = this.service.get_familles('');
+    this.laboratoires$ = this.service.get_laboratoires('');
 
     this.product$ = this.route.paramMap.pipe(
     switchMap((params: ParamMap) =>
     this.service.get_product(params.get('id'))));
+
     this.product$.subscribe((val: Product) => {
       this._updateFrom(val);
-      console.log('the id is ' + val);
     });
-    this.filteredFamilleOptions = this.productForm.get('famille').valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+
     }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
 
-    return this.familleOptions.filter(option => option.toLowerCase().includes(filterValue));
-  }
 
 
   private _updateFrom (product: Product) {

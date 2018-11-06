@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     MaterialModule,
     ProductsModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [ProductsDataInjectables],
   bootstrap: [AppComponent]

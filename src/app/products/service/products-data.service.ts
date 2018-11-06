@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product, Famille} from '../../model';
+import { Product, Famille , Laboratoire} from '../../model';
 import { map } from 'rxjs/operators';
 
 
@@ -51,7 +51,7 @@ export class ProductsDataService {
    }
 
 
-   private get_result_famille(query: string): Observable<Famille[]> {
+  private get_result_famille(query: string): Observable<Famille[]> {
     return this.http.get(query).pipe(
     map((jsonArray: Famille[]) => jsonArray.map(jsonItem => Famille.fromJson(jsonItem) ))
   );
@@ -82,5 +82,41 @@ return this.http.get(query).pipe(
  );
 
 }
+
+private get_result_laboratoire(query: string): Observable<Laboratoire[]> {
+  return this.http.get(query).pipe(
+  map((jsonArray: Laboratoire[]) => jsonArray.map(jsonItem => Laboratoire.fromJson(jsonItem) ))
+);
+
+}
+
+
+get_laboratoires(value): Observable<Laboratoire[]> {
+ const query: string = [
+this.apiUrl,
+'/laboratoires/',
+ value
+].join('');
+
+return this.get_result_laboratoire(query);
+
+}
+
+get_laboratoire(value): Observable<Laboratoire> {
+const query: string = [
+this.apiUrl,
+'/laboratoire/',
+value
+].join('');
+
+return this.http.get(query).pipe(
+map((jsonItem: Laboratoire)  => Laboratoire.fromJson(jsonItem))
+);
+
+}
+
+
+
+
 
   }

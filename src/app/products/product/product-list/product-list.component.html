@@ -1,9 +1,12 @@
-<article [routerLink]="['../', product.id]" class="mat-typography" *ngFor="let product of products" >
-        
+
+<div [routerLink]="['../', product.id]" class="mat-typography" *ngFor="let product of products" >
+<article >
+      
   <div> 
-      <h3>{{product.designation}}</h3>
+      <h4>{{product.designation}}</h4>
       <h5>{{product.familles.designation}} - <span>{{product.laboratoires.designation}}</span></h5>  
   </div>
   <h5>25-08-2018</h5>
-
 </article>
+<mat-divider ></mat-divider>
+</div>

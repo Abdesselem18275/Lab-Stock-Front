@@ -14,19 +14,22 @@
     </mat-form-field>
   
     <mat-form-field class="full-width field-gutter field-face" appearance="fill">
-        <mat-label>Famille</mat-label>
-        <input matInput [matAutocomplete]="auto" formControlName="famille">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredFamilleOptions | async" [value]="option">
-              {{option}}
+        <mat-select placeholder="Famille"  formControlName="famille">
+            <mat-option *ngFor="let famille of familles$ | async" [value]="famille.id">
+              {{famille.designation}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
     </mat-form-field>
 
     <mat-form-field class="full-width field-gutter field-face" appearance="fill">
-        <mat-label>Laboratoire</mat-label>
-        <input matInput formControlName="laboratoire">
-      </mat-form-field>
+            <mat-select placeholder="Laboratoire"  formControlName="laboratoire">
+                <mat-option *ngFor="let laboratoire of laboratoires$ | async" [value]="laboratoire.id">
+                  {{laboratoire.designation}}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+
+
       
       <mat-divider></mat-divider>
       <h5>Conditionnement</h5>
