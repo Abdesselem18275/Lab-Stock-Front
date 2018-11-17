@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, ElementRef, Input, EventEmitter } from '@angular/core';
 import {fromEvent, Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Router, ActivatedRoute , NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Product } from 'src/app/model';
 import { ProductsDataService } from '../../service/products-data.service';
@@ -26,13 +26,13 @@ export class ProductSearchComponent implements OnInit {
   ngOnInit() {
 
     this.searchBoxActive = false;
-    this.productData.get_products('').subscribe
+    this.productData.get_elements('', 'product').subscribe
     ((products: Product[]) => { this.products = products; this.products$.emit(this.products); } );
 
     fromEvent(this.el.nativeElement, 'keyup').pipe(
            map((e: any) => e.target.value)).
            subscribe((value: string) => {
-            this.productData.get_products(value).
+            this.productData.get_elements(value, 'product').
             subscribe((products: Product[]) => this.products$.emit(products));
           });
   }

@@ -1,0 +1,78 @@
+<header class="mat-elevation-z1 mat-typography">
+  <mat-icon [routerLink]="['../list']" id="back_ico" class="material-icons icon-style">arrow_back_ios</mat-icon>
+  <span  id="head_text" class="icon-style">Nouveau produit</span>
+  <span  class="header-spacer"></span>
+  <mat-icon  (click)="onSubmit()" id="save_ico" class="icon-style material-icons">save</mat-icon>
+</header>
+
+
+<form  [formGroup]="productForm"  (ngSubmit)="onSubmit()" class="form-gutter"  #f="ngForm">
+  
+  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+      <mat-label>Designation</mat-label>
+      <input matInput formControlName="designation">
+  </mat-form-field>
+
+  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+          <mat-label>Reference</mat-label>
+          <input matInput formControlName="reference">
+      </mat-form-field>
+
+  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+      <mat-select placeholder="Famille"  formControlName="famille">
+          <mat-option *ngFor="let famille of familles" [value]="famille.id">
+            {{famille.designation}}
+          </mat-option>
+        </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+          <mat-select placeholder="Laboratoire"  formControlName="laboratoire">
+              <mat-option *ngFor="let laboratoire of laboratoires" [value]="laboratoire.id">
+                {{laboratoire.designation}}
+              </mat-option>
+            </mat-select>
+      </mat-form-field>
+
+
+    
+    <mat-divider></mat-divider>
+    <h5>Conditionnement</h5>
+    
+  <div formGroupName="conditionnement">
+      
+    <mat-form-field class=" field-gutter field-face" appearance="fill">
+        <mat-label>Contenant par coffret</mat-label>
+        <input matInput formControlName="contenantCoffret">
+    </mat-form-field>
+
+  
+    
+    <mat-form-field class=" field-gutter field-face" appearance="fill">
+        <mat-label>Test par contenant</mat-label>
+        <input matInput formControlName="testContenant">
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+  <h5>stock</h5>
+  
+  <div formGroupName="stock">
+      
+
+      
+    <mat-form-field class=" field-gutter field-face" appearance="fill">
+        <mat-label>CMM</mat-label>
+        <input matInput formControlName="cmm">
+    </mat-form-field>
+
+    <mat-form-field class=" field-gutter field-face" appearance="fill">
+        <mat-label>Stock mini par mois </mat-label>
+        <input matInput formControlName="stockMiniMois">
+    </mat-form-field>
+
+  </div>
+  <mat-divider></mat-divider>
+</form>
+
+

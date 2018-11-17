@@ -12,6 +12,7 @@ import { ProductHomeComponent } from './product-home/product-home.component';
 import { ProductNavbarComponent } from './product-navbar/product-navbar.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductNewComponent } from './product-new/product-new.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     ProductListComponent,
     ProductNavbarComponent,
     ProductSearchComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductNewComponent
   ]
 
 })

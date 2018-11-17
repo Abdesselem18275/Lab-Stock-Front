@@ -8,7 +8,7 @@ import { PageNotFoundComponent} from './page-not-found/page-not-found/page-not-f
 
 const appRoutes: Routes = [
 
-  {path : '' , redirectTo: '/products' , pathMatch: 'full'},
+  {path : '' , redirectTo: '/products/product/list' , pathMatch: 'full'},
   {path : '**' , component : PageNotFoundComponent},
 
 ];

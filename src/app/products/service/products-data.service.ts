@@ -2,13 +2,17 @@ import {
   Injectable,
   Inject
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Product, Famille , Laboratoire} from '../../model';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
-export const API_URL = 'https://labstock-api.herokuapp.com';
+export const API_URL = 'https://lab-stock-api.herokuapp.com';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 
 @Injectable({
@@ -16,107 +20,103 @@ export const API_URL = 'https://labstock-api.herokuapp.com';
 })
 export class ProductsDataService {
 
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
+
+
+
+
+
+
   constructor(private http: HttpClient , @Inject(API_URL) private apiUrl: string) { }
 
-    private get_result(query: string): Observable<Product[]> {
+    private get_result(query: string): Observable<any[]> {
         return this.http.get(query).pipe(
-        map((jsonArray: Product[]) => jsonArray.map(jsonItem => Product.fromJson(jsonItem) ))
-      );
-
+        map((jsonArray: any[]) => jsonArray.map(jsonItem => jsonItem)));
     }
 
 
-    get_products(value): Observable<Product[]> {
+    get_elements(value, model): Observable<any[]> {
        const query: string = [
       this.apiUrl,
-      '/products/',
-       value
+      '/',
+      model,
+      's/'
      ].join('');
-
      return this.get_result(query);
 
     }
 
-    get_product(value): Observable<Product> {
+    get_element(value, model): Observable<any> {
       const query: string = [
      this.apiUrl,
-     '/product/',
+     '/',
+     model,
+     '/',
       value
     ].join('');
-
-    return this.http.get(query).pipe(
-      map((jsonItem: Product)  => Product.fromJson(jsonItem))
-     );
+    return this.http.get(query);
 
    }
 
+   add_element(object, model): Observable<any> {
+    const query: string = [
+      this.apiUrl,
+      '/',
+      model,
+      's/'
+     ].join('');
+  return this.http.post(query, object, httpOptions).pipe(catchError(this.handleError)) ;
 
-  private get_result_famille(query: string): Observable<Famille[]> {
-    return this.http.get(query).pipe(
-    map((jsonArray: Famille[]) => jsonArray.map(jsonItem => Famille.fromJson(jsonItem) ))
-  );
+ }
 
-}
+  update_element(value, object, model): Observable<any> {
 
+    const query: string = [
+      this.apiUrl,
+      '/',
+      model,
+      '/',
+       value,
+       '/'
+     ].join('');
 
-get_familles(value): Observable<Famille[]> {
-   const query: string = [
-  this.apiUrl,
-  '/familles/',
-   value
- ].join('');
+     console.log(query);
 
- return this.get_result_famille(query);
+     return this.http.put(query, object, httpOptions).pipe(
+                          catchError(this.handleError)
+    );
 
-}
+  }
 
-get_famille(value): Observable<Famille> {
-  const query: string = [
- this.apiUrl,
- '/famille/',
-  value
-].join('');
+  delete_element(value, model): Observable<any> {
 
-return this.http.get(query).pipe(
-  map((jsonItem: Famille)  => Famille.fromJson(jsonItem))
- );
+    const query: string = [
+      this.apiUrl,
+      '/',
+      model,
+      '/',
+       value,
+       '/'
+     ].join('');
 
-}
+     return this.http.delete(query);
 
-private get_result_laboratoire(query: string): Observable<Laboratoire[]> {
-  return this.http.get(query).pipe(
-  map((jsonArray: Laboratoire[]) => jsonArray.map(jsonItem => Laboratoire.fromJson(jsonItem) ))
-);
-
-}
-
-
-get_laboratoires(value): Observable<Laboratoire[]> {
- const query: string = [
-this.apiUrl,
-'/laboratoires/',
- value
-].join('');
-
-return this.get_result_laboratoire(query);
-
-}
-
-get_laboratoire(value): Observable<Laboratoire> {
-const query: string = [
-this.apiUrl,
-'/laboratoire/',
-value
-].join('');
-
-return this.http.get(query).pipe(
-map((jsonItem: Laboratoire)  => Laboratoire.fromJson(jsonItem))
-);
-
-}
-
-
-
+  }
 
 
   }
