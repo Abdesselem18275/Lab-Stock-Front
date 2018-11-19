@@ -6,25 +6,27 @@
     <mat-icon  (click)="onSubmit()" id="save_ico" class="icon-style material-icons">save</mat-icon>
 </header>
 
-
 <form  [formGroup]="productForm"  (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="product" #f="ngForm">
     
     <mat-form-field class="full-width field-gutter field-face" appearance="fill">
         <mat-label>Designation</mat-label>
         <input matInput formControlName="designation">
+        <mat-error *ngIf="server_error.designation">{{server_error.designation}}</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width field-gutter field-face" appearance="fill">
             <mat-label>Reference</mat-label>
             <input matInput formControlName="reference">
+            <mat-error *ngIf="server_error.Reference">{{server_error.Reference}}</mat-error>
         </mat-form-field>
   
     <mat-form-field class="full-width field-gutter field-face" appearance="fill">
-        <mat-select placeholder="Famille"  formControlName="famille">
+        <mat-select placeholder="Famille" formControlName="famille">
             <mat-option *ngFor="let famille of familles" [value]="famille.id">
               {{famille.designation}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="server_error.famille">{{server_error.famille}}</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width field-gutter field-face" appearance="fill">
@@ -33,6 +35,7 @@
                   {{laboratoire.designation}}
                 </mat-option>
               </mat-select>
+              <mat-error *ngIf="server_error.laboratoire">{{server_error.laboratoire}}</mat-error>
         </mat-form-field>
 
 
@@ -45,6 +48,7 @@
       <mat-form-field class=" field-gutter field-face" appearance="fill">
           <mat-label>Contenant par coffret</mat-label>
           <input matInput formControlName="contenantCoffret">
+          <mat-error *ngIf="server_error.contenantCoffret">{{server_error.contenantCoffret}}</mat-error>
       </mat-form-field>
 
     
@@ -52,6 +56,7 @@
       <mat-form-field class=" field-gutter field-face" appearance="fill">
           <mat-label>Test par contenant</mat-label>
           <input matInput formControlName="testContenant">
+          <mat-error *ngIf="server_error.testContenant">{{server_error.testContenant}}</mat-error>
       </mat-form-field>
     </div>
 
@@ -65,17 +70,21 @@
       <mat-form-field class=" field-gutter field-face" appearance="fill">
           <mat-label>CMM</mat-label>
           <input matInput formControlName="cmm">
+          <mat-error *ngIf="server_error.cmm">{{server_error.cmm}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class=" field-gutter field-face" appearance="fill">
           <mat-label>Stock mini par mois </mat-label>
           <input matInput formControlName="stockMiniMois">
+          <mat-error *ngIf="server_error.stockMiniMois">{{server_error.stockMiniMois}}</mat-error>
       </mat-form-field>
 
     </div>
     <mat-divider></mat-divider>
+    <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>
   </form>
 
+  
 
 
 

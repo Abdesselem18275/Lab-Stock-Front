@@ -3,7 +3,6 @@ import { Product, Laboratoire, Famille } from 'src/app/model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsDataService } from '../../service/products-data.service';
-import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -43,17 +42,7 @@ export class ProductNewComponent implements OnInit {
 
   onSubmit() {
 
-    this.product = new Product({
-         reference : this.productForm.value.reference,
-         designation : this.productForm.value.designation,
-         famille : this.productForm.value.famille,
-         laboratoire :  this.productForm.value.laboratoire,
-         contenantCoffret : this.productForm.value.conditionnement.contenantCoffret,
-         testContenant : this.productForm.value.conditionnement.testContenant,
-         cmm :  this.productForm.value.stock.cmm,
-         StockMiniMois : this.productForm.value.stock.stockMiniMois,
-         creation_date : '2015-09-08'
-        });
+    this.product = Product.fromFrom(this.productForm, 0);
 
     console.warn(JSON.stringify(this.product));
     this.service.add_element(JSON.stringify(this.product), 'product').

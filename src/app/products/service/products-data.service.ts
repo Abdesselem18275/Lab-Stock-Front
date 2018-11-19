@@ -31,6 +31,7 @@ export class ProductsDataService {
       console.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${error.error}`);
+        return throwError(error.error);
     }
     // return an observable with a user-facing error message
     return throwError(
@@ -55,7 +56,8 @@ export class ProductsDataService {
       this.apiUrl,
       '/',
       model,
-      's/'
+      's/',
+      value
      ].join('');
      return this.get_result(query);
 
@@ -97,10 +99,7 @@ export class ProductsDataService {
 
      console.log(query);
 
-     return this.http.put(query, object, httpOptions).pipe(
-                          catchError(this.handleError)
-    );
-
+     return this.http.put(query, object, httpOptions);
   }
 
   delete_element(value, model): Observable<any> {

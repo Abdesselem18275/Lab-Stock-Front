@@ -1,3 +1,5 @@
+import { FormGroup } from "@angular/forms";
+
 export class Product {
     id: number ;
     famille: any ;
@@ -40,7 +42,21 @@ export class Product {
 
         );
     }
+    public static fromFrom(form: FormGroup , id: number ) {
+        return new Product({
+            id : id,
+            reference : form.value.reference,
+            designation : form.value.designation,
+            famille : form.value.famille,
+            laboratoire :  form.value.laboratoire,
+            contenantCoffret : form.value.conditionnement.contenantCoffret,
+            testContenant : form.value.conditionnement.testContenant,
+            cmm :  form.value.stock.cmm,
+            StockMiniMois : form.value.stock.stockMiniMois,
+            creation_date : '2018-08-08'
+           });
 
+    }
 
 }
 
