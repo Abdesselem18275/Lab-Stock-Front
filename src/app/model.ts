@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 
 export class Product {
     id: number ;
@@ -103,11 +103,12 @@ export class Laboratoire {
 
 
 export class NavPath {
+    module: string;
     label: string ;
     path: string ;
     icon_name: string ;
 
-    constructor(label: string , path: string, icon_name: string) {
+    constructor(module: string , label: string , path: string, icon_name: string) {
         this.label = label;
         this.path = path;
         this.icon_name = icon_name;

@@ -3,10 +3,7 @@
   <a mat-tab-link *ngFor="let link of navpaths"
      (click)="activeLink = link.path"
      [active] = "activeLink == link.path"
-     [routerLink]="link.path"
-     > 
-     
+     [routerLink]="link.path"> 
      {{link.label}}
-     
      </a>
 </nav>

@@ -78,14 +78,14 @@ export class ProductDetailComponent implements OnInit {
     this.product = Product.fromFrom(this.productForm, this.product.id);
     this.service.update_element(this.product.id, JSON.stringify(this.product), 'product').
           subscribe((product: Product) =>  {
-              this.product = Product.fromJson(product); this.snackBar.open('Element ajouter', '' , {duration: 1000, }); },
+              this.product = Product.fromJson(product);
+              this.snackBar.open('Element ajouter', '' , {duration: 1000, }); },
               error => {this.server_error = error.error ; this.snackBar.open('Erreur');  console.warn(this.server_error); }
           ); }
-
 
   onDelete() {
     this.service.delete_element(this.product.id, 'product').
     subscribe(() => { this.snackBar.open('Element supprimer', '' , {duration: 1000, });
-                      this.router.navigate(['/list']); });
+                      this.router.navigate(['../list'], { relativeTo: this.route } ) ; });
                     }
 }

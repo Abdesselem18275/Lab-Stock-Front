@@ -10,14 +10,15 @@ export class ProductHomeComponent implements OnInit {
 
   isSearchActive: Boolean ;
   products: Product[] ;
+  model: String ;
   constructor() {}
 
   ngOnInit() {
+    this.model = 'product';
   }
 
   onclickSearchBar(activity: boolean) {
     this.isSearchActive = activity;
-    console.log('Is clicked*************' + this.isSearchActive);
   }
 
   updateResults(products: Product[]) {

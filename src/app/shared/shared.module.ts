@@ -5,7 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material';
 import { SharedRoutingModule } from './shared-routing.module';
-import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-field.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { AutocompleteFieldComponent } from './autocomplete-field/autocomplete-fi
     MaterialModule,
     ReactiveFormsModule
   ],
-  declarations: [AutocompleteFieldComponent],
-  exports: [AutocompleteFieldComponent]
+  declarations: [SearchBoxComponent, NavBarComponent],
+  exports: [SearchBoxComponent, NavBarComponent]
 })
 export class SharedModule { }

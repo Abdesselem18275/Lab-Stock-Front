@@ -1,7 +1,7 @@
 <header class="mat-elevation-z1 mat-typography">
-    <app-product-search (products$)="updateResults($event)"> 
-    </app-product-search>
-    <app-product-navbar *ngIf="!isSearchActive"></app-product-navbar>
+    <app-search-box [model]="model" (elements$)="updateResults($event)"> 
+    </app-search-box >
+    <app-nav-bar *ngIf="!isSearchActive"></app-nav-bar>
     </header>
 
 <app-product-list [products]="products"></app-product-list>

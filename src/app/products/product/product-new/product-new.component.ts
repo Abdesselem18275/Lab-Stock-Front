@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product, Laboratoire, Famille } from 'src/app/model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsDataService } from '../../service/products-data.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -17,10 +18,13 @@ export class ProductNewComponent implements OnInit {
   familles: Famille[];
   laboratoires: Laboratoire[];
   productForm: FormGroup;
+  server_error: any;
   constructor(
     private route: ActivatedRoute,
     private service: ProductsDataService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    public snackBar: MatSnackBar,
+    private router: Router ) {
       this.productForm = this.fb.group({
         designation : ['', Validators.required],
         reference : ['', Validators.required],
@@ -33,6 +37,7 @@ export class ProductNewComponent implements OnInit {
         cmm : ['', Validators.required],
         stockMiniMois : ['', Validators.required]})
       });
+    this.server_error = {};
   }
 
   ngOnInit() {
@@ -42,11 +47,18 @@ export class ProductNewComponent implements OnInit {
 
   onSubmit() {
 
+    const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
+    element.click();
     this.product = Product.fromFrom(this.productForm, 0);
-
-    console.warn(JSON.stringify(this.product));
     this.service.add_element(JSON.stringify(this.product), 'product').
-    subscribe(x => console.log(x));
+    subscribe(
+     () =>  {
+        this.snackBar.open('Element ajouter', '' , {duration: 1000, });
+        this.router.navigate(['../list'], { relativeTo: this.route } ); },
+      error => {
+        this.server_error = error ; this.snackBar.open('Erreur');
+        console.warn(this.server_error); }
+    );
   }
 
 }

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
-import { ProductComponent } from './product/product/product.component';
-import { ProductHomeComponent } from './product/product-home/product-home.component';
+import { LaboratoireComponent } from './laboratoire/laboratoire/laboratoire.component';
 
 
 const productsRoutes: Routes = [
@@ -14,6 +13,14 @@ const productsRoutes: Routes = [
             path: '',
             redirectTo: '/products/product/list' , pathMatch: 'full',
           },
+          {
+            path: 'famille',
+            redirectTo: '/products/famille/list' , pathMatch: 'full',
+          },
+          {
+            path: 'laboratoire',
+            component: LaboratoireComponent,
+          }
         ]
       },
     ];
