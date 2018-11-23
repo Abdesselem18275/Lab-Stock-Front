@@ -50,7 +50,7 @@ export class FamilleDetailComponent implements OnInit {
 
     const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
     element.click();
-    this.famille.designation = this.familleForm.value ;
+    this.famille.designation = this.familleForm.value.designation  ;
     this.service.update_element(this.famille.id, JSON.stringify(this.famille), 'famille').
           subscribe(
             (famille: Famille) =>  {

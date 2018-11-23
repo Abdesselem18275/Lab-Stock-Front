@@ -11,10 +11,10 @@
   <mat-form-field class="full-width field-gutter field-face" appearance="fill">
       <mat-label>Designation</mat-label>
       <input matInput formControlName="designation" required>
-      <mat-error *ngIf="server_error.designation">{{server_error.designation}}</mat-error>
+      <mat-error *ngIf="server_error?.designation">{{server_error.designation}}</mat-error>
   </mat-form-field>
   <mat-divider></mat-divider>
-  <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>
+  <button [style.display]="'none'" id='laboratoire-submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>
 </form>
 
 

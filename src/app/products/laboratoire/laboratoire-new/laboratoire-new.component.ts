@@ -36,7 +36,7 @@ export class LaboratoireNewComponent implements OnInit {
 
     const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
     element.click();
-    this.laboratoire = this.laboratoireForm.value ;
+    this.laboratoire = this.laboratoireForm.value.designation  ;
     this.service.add_element(JSON.stringify(this.laboratoire), 'laboratoire').
     subscribe(
      () =>  {

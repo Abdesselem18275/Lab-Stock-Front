@@ -47,10 +47,11 @@ export class LaboratoireDetailComponent implements OnInit {
     }); }
 
   onSubmit() {
-
-    const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
+    console.log('hello');
+    const element: HTMLElement = document.getElementById('laboratoire-submit-button') as HTMLElement ;
     element.click();
-    this.laboratoire.designation = this.laboratoireForm.value ;
+    this.laboratoire.designation = this.laboratoireForm.value.designation ;
+    console.warn('aaaaaaaaaaaaaa' + JSON.stringify(this.laboratoire));
     this.service.update_element(this.laboratoire.id, JSON.stringify(this.laboratoire), 'laboratoire').
           subscribe(
             (laboratoire: Laboratoire) =>  {

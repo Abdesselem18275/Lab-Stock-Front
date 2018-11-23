@@ -36,7 +36,7 @@ export class FamilleNewComponent implements OnInit {
 
     const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
     element.click();
-    this.famille = this.familleForm.value ;
+    this.famille = this.familleForm.value.designation  ;
     this.service.add_element(JSON.stringify(this.famille), 'famille').
     subscribe(
      () =>  {
