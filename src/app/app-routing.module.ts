@@ -4,11 +4,12 @@ import {RouterModule , Routes} from '@angular/router';
 
 
 import { PageNotFoundComponent} from './page-not-found/page-not-found/page-not-found.component';
+import { ProductsComponent } from './products/products/products.component';
 
 
 const appRoutes: Routes = [
 
-  {path : '' , redirectTo: '/products/product/list' , pathMatch: 'full'},
+  {path : '' , component : ProductsComponent},
   {path : '**' , component : PageNotFoundComponent},
 
 ];

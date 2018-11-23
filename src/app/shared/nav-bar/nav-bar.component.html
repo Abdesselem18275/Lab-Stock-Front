@@ -1,8 +1,8 @@
 <nav mat-tab-nav-bar class="nav-divider" color="accent">
   
   <a mat-tab-link *ngFor="let link of navpaths"
-     (click)="activeLink = link.path"
-     [active] = "activeLink == link.path"
+     (click)="set_active_link(link.path)"
+     [active] = "get_active_link() == link.path"
      [routerLink]="link.path"> 
      {{link.label}}
      </a>

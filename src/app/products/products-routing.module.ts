@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { LaboratoireComponent } from './laboratoire/laboratoire/laboratoire.component';
+import { FamilleComponent } from './famille/famille/famille.component';
 
 
 const productsRoutes: Routes = [
@@ -15,7 +16,7 @@ const productsRoutes: Routes = [
           },
           {
             path: 'famille',
-            redirectTo: '/products/famille/list' , pathMatch: 'full',
+            component: FamilleComponent,
           },
           {
             path: 'laboratoire',

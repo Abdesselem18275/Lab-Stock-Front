@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NavPath} from '../../model';
-
+import { NavBarService } from '../service/nav-bar.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,19 +12,18 @@ export class NavBarComponent implements OnInit {
   navpaths: NavPath[] ;
   activeLink: String ;
 
-  constructor() {
+  constructor(private navService: NavBarService) {
 
-    this.navpaths = [new NavPath('produits', 'PRODUITS', '../../product/list', 'produits'),
-              new NavPath('produits', 'LABORATOIRES', '../../laboratoire/list', 'laboratoires'),
-              new NavPath('produits', 'FAMILLES', '../../familles/list', 'familles')];
+    this.navpaths = navService.get_navpath();
 
-    this.activeLink = this.navpaths[0].path;
-    console.log(this.activeLink);
   }
 
   ngOnInit() {
-
   }
-
-
+  set_active_link(path: string) {
+     this.navService.set_active_link(path);
+  }
+  get_active_link() {
+    return this.navService.get_active_link();
+  }
 }

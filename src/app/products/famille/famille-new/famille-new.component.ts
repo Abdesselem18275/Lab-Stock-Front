@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Laboratoire } from 'src/app/model';
+import { Famille } from 'src/app/model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsDataService } from '../../service/products-data.service';
@@ -7,14 +7,14 @@ import { MatSnackBar } from '@angular/material';
 
 
 @Component({
-  selector: 'app-laboratoire-new',
-  templateUrl: './laboratoire-new.component.html',
-  styleUrls: ['./laboratoire-new.component.scss']
+  selector: 'app-famille-new',
+  templateUrl: './famille-new.component.html',
+  styleUrls: ['./famille-new.component.scss']
 })
-export class LaboratoireNewComponent implements OnInit {
+export class FamilleNewComponent implements OnInit {
 
-  laboratoire: Laboratoire ;
-  laboratoireForm: FormGroup;
+  famille: Famille ;
+  familleForm: FormGroup;
   server_error: any;
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +22,7 @@ export class LaboratoireNewComponent implements OnInit {
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
     private router: Router ) {
-      this.laboratoireForm = this.fb.group({
+      this.familleForm = this.fb.group({
         designation : ['', Validators.required]
       });
     this.server_error = {};
@@ -36,8 +36,8 @@ export class LaboratoireNewComponent implements OnInit {
 
     const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
     element.click();
-    this.laboratoire = this.laboratoireForm.value ;
-    this.service.add_element(JSON.stringify(this.laboratoire), 'laboratoire').
+    this.famille = this.familleForm.value ;
+    this.service.add_element(JSON.stringify(this.famille), 'famille').
     subscribe(
      () =>  {
         this.snackBar.open('Element ajouter', '' , {duration: 1000, });
