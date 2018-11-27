@@ -24,13 +24,13 @@ export class SearchBoxComponent implements OnInit {
   ngOnInit() {
 
     this.searchBoxActive = false;
-    this.elementsData.get_elements('', this.model).subscribe
+    this.elementsData.get_elements(this.model).subscribe
     (elements => { this.elements = elements; this.elements$.emit(this.elements); } );
 
     fromEvent(this.el.nativeElement, 'keyup').pipe(
            map((e: any) => e.target.value)).
            subscribe((value: string) => {
-            this.elementsData.get_elements(value, this.model).
+            this.elementsData.get_elements(this.model, value, 'search').
             subscribe(elements => this.elements$.emit(elements));
           });
   }

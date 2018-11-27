@@ -1,0 +1,13 @@
+<div  *ngFor="let transProducts of transProducts" >
+  <article >
+    <div> 
+        <h4><span>{{transProducts.numero_lot}}</span> - {{transProducts.produit.designation}}</h4>
+        <h5>{{transProducts.produit.famille.designation}}</h5>  
+    </div>
+    <h5>
+      <div>{{transProducts.modification_date}}</div>
+    </h5>
+    
+  </article>
+  <mat-divider ></mat-divider>
+  </div>

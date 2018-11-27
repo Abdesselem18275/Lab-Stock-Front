@@ -44,8 +44,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.get_elements('', 'famille').subscribe((familles: Famille[]) => this.familles = familles);
-    this.service.get_elements('', 'laboratoire').subscribe((laboratoires: Laboratoire[]) => this.laboratoires = laboratoires);
+    this.service.get_elements('famille').subscribe((familles: Famille[]) => this.familles = familles);
+    this.service.get_elements('laboratoire').subscribe((laboratoires: Laboratoire[]) => this.laboratoires = laboratoires);
     this.route.paramMap.pipe(
          switchMap((params: ParamMap) => this.service.get_element(params.get('id'), 'product'))).
          subscribe((jsonItem: any) => {

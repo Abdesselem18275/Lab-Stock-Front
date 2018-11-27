@@ -18,6 +18,6 @@ export class ProductListComponent implements OnInit {
   is_empty(): boolean {return false; }
 
   ngOnInit() {
-   }
+  }
 
 }

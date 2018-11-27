@@ -2,7 +2,7 @@ import {
   Injectable,
   Inject
 } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -14,12 +14,10 @@ const httpOptions = {
   })
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsDataService {
-
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -45,22 +43,36 @@ export class ProductsDataService {
 
   constructor(private http: HttpClient , @Inject(API_URL) private apiUrl: string) { }
 
-    private get_result(query: string): Observable<any[]> {
-        return this.http.get(query).pipe(
-        map((jsonArray: any[]) => jsonArray.map(jsonItem => jsonItem)));
-    }
 
-
-    get_elements(value, model): Observable<any[]> {
+    get_elements(model, value?, param_key?): Observable<any[]> {
+      const options = value ?
+      { params: new HttpParams().set(param_key, value.trim()) } : {};
        const query: string = [
       this.apiUrl,
       '/',
       model,
-      's/',
-      value
-     ].join('');
-     return this.get_result(query);
+      's/'].join('');
+     return this.http.get(query, options).pipe(
+      map((jsonArray: any[]) => jsonArray.map(jsonItem => jsonItem)));
 
+    }
+
+    get_elements_test(model, params_set?): Observable<any[]> {
+
+      let _httpParams = new HttpParams();
+      params_set.keys.forEach(key => {
+         _httpParams = _httpParams.append(key, params_set.get(key)); });
+
+      const options = {
+        params : _httpParams };
+
+      const query: string = [
+        this.apiUrl,
+        '/',
+        model,
+        's/'].join('');
+       return this.http.get(query, options).pipe(
+        map((jsonArray: any[]) => jsonArray.map(jsonItem => jsonItem)));
     }
 
     get_element(value, model): Observable<any> {
@@ -89,13 +101,7 @@ export class ProductsDataService {
   update_element(value, object, model): Observable<any> {
 
     const query: string = [
-      this.apiUrl,
-      '/',
-      model,
-      '/',
-       value,
-       '/'
-     ].join('');
+      this.apiUrl, '/', model, '/', value, '/'].join('');
 
      console.log(query);
 

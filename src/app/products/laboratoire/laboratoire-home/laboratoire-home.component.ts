@@ -10,10 +10,12 @@ export class LaboratoireHomeComponent implements OnInit {
   isSearchActive: Boolean ;
   laboratoires: Laboratoire[] ;
   model: String ;
+  module_nav: string;
   constructor() {}
 
   ngOnInit() {
     this.model = 'laboratoire';
+    this.module_nav = 'produits';
    }
 
   onclickSearchBar(activity: boolean) {

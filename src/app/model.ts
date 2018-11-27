@@ -96,10 +96,46 @@ export class Laboratoire {
         }
     }
 
+export class TransProduct {
+    id: number ;
+    produit: any ;
+    numero_lot: number ;
+    quantite: number ;
+    modification_date: string ;
+    peremption_date: string ;
 
 
+    constructor(obj?: any) {
+        this.id = obj && obj.id || null ;
+        this.produit = obj && obj.produit || null ;
+        this.numero_lot = obj && obj.numero_lot || null ;
+        this.quantite = obj && obj.quantite || null ;
+        this.modification_date = obj && obj.modification_date || null ;
+        this.peremption_date = obj && obj.peremption_date || null ;
+    }
 
-
+    public static fromJson(json: Object): TransProduct {
+        return new TransProduct({
+            id: json['id'],
+            produit: Product.fromJson(json['produit']),
+            numero_lot: json['numero_lot'],
+            quantite: json['quantite'],
+            modification_date: json['modification_date'],
+            peremption_date: json['peremption_date']
+        }
+        );
+    }
+    public static fromForm(form: FormGroup , id: number ): TransProduct {
+        return new TransProduct({
+            id : id,
+            produit : form.value.produit,
+            numero_lot : form.value.numero_lot,
+            quantite : form.value.quantite,
+            modification_date :  form.value.modification_date,
+            peremption_date : form.value.peremption_date
+           });
+    }
+}
 
 
 export class NavPath {
@@ -107,11 +143,14 @@ export class NavPath {
     label: string ;
     path: string ;
     icon_name: string ;
+    params: any;
 
-    constructor(module: string , label: string , path: string, icon_name: string) {
+    constructor(module: string , label: string , path: string, icon_name: string, params?: any) {
+        this.module = module;
         this.label = label;
         this.path = path;
         this.icon_name = icon_name;
+        this.params = params || null;
     }
 
 

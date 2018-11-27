@@ -11,6 +11,7 @@ import { ProductsModule } from './products/products.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { SharedInjectablesService } from './shared/service/shared-injectables.service';
+import { StockModule } from './stock/stock.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SharedInjectablesService } from './shared/service/shared-injectables.se
     BrowserAnimationsModule,
     MaterialModule,
     ProductsModule,
+    StockModule,
     SharedModule,
     AppRoutingModule,
   ],
