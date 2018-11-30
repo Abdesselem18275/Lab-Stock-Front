@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LaboratoireRoutingModule } from './laboratoire-routing.module';
 import { LaboratoireComponent } from './laboratoire/laboratoire.component';
 import { LaboratoireDetailComponent } from './laboratoire-detail/laboratoire-detail.component';
-import { LaboratoireHomeComponent } from './laboratoire-home/laboratoire-home.component';
 import { LaboratoireListComponent } from './laboratoire-list/laboratoire-list.component';
 import { LaboratoireNewComponent } from './laboratoire-new/laboratoire-new.component';
 
@@ -20,8 +19,7 @@ import { LaboratoireNewComponent } from './laboratoire-new/laboratoire-new.compo
     LaboratoireRoutingModule,
 
   ],
-  declarations: [LaboratoireComponent, LaboratoireDetailComponent, LaboratoireHomeComponent,
-    LaboratoireListComponent, LaboratoireNewComponent],
+  declarations: [LaboratoireComponent, LaboratoireDetailComponent, LaboratoireListComponent, LaboratoireNewComponent],
   exports : [LaboratoireComponent]
 })
 export class LaboratoireModule { }

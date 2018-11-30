@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProductHomeComponent } from './product-home.component';
+import { NavSearchBoxComponent } from './nav-search-box.component';
 
-describe('ProductHomeComponent', () => {
-  let component: ProductHomeComponent;
-  let fixture: ComponentFixture<ProductHomeComponent>;
+describe('NavSearchBoxComponent', () => {
+  let component: NavSearchBoxComponent;
+  let fixture: ComponentFixture<NavSearchBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductHomeComponent ]
+      declarations: [ NavSearchBoxComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductHomeComponent);
+    fixture = TestBed.createComponent(NavSearchBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

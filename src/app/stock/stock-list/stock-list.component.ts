@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { ProductsDataService } from 'src/app/products/service/products-data.service';
 import { TransProduct } from 'src/app/model';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-stock-list',
@@ -20,17 +19,6 @@ export class StockListComponent implements OnInit {
     this.route.queryParamMap.pipe(
       switchMap(value => this.productData.get_elements_test('transaction', value))).subscribe(
         (transProducts => {this.transProducts = transProducts; }));
-
-    this.route.queryParamMap.subscribe(params => {
-
-      const httpParams = new HttpParams();
-      for ( const key of params.keys) {
-        httpParams.set(key, params.get(key));
-      }
-      const option = {
-        params : httpParams
-      };
-    });
   }
 
 }

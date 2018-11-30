@@ -7,7 +7,6 @@ import {SharedModule} from '../shared/shared.module';
 import { StockRoutingModule } from './stock-routing.module';
 import { StockComponent } from './stock/stock.component';
 import { StockListComponent } from './stock-list/stock-list.component';
-import { StockSearchbarComponent } from './stock-searchbar/stock-searchbar.component';
 
 @NgModule({
   imports: [
@@ -17,6 +16,6 @@ import { StockSearchbarComponent } from './stock-searchbar/stock-searchbar.compo
     ReactiveFormsModule ,
     StockRoutingModule
   ],
-  declarations: [StockComponent, StockListComponent, StockSearchbarComponent]
+  declarations: [StockComponent, StockListComponent]
 })
 export class StockModule { }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap} from 'rxjs/operators';
+import { switchMap, debounceTime} from 'rxjs/operators';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {Famille} from 'src/app/model';
 import { ProductsDataService } from '../../service/products-data.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { fromEvent } from 'rxjs';
 
 
 @Component({
@@ -36,7 +37,20 @@ export class FamilleDetailComponent implements OnInit {
                     this.famille = Famille.fromJson(jsonItem);
                     this._updateFrom(this.famille); } );
 
-    }
+    const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
+    console.warn(element_save);
+    fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(
+      () =>  {   const element_submit: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
+                       element_submit.click(); });
+
+    const element_delete: HTMLElement = document.getElementById('delete_ico') as HTMLElement ;
+    fromEvent(element_delete, 'click').pipe(debounceTime(500)).subscribe(
+      () => this.service.delete_element(this.famille.id, 'famille').
+                           subscribe(() => { this.snackBar.open('Element supprimer', '' , {duration: 1000, });
+                                             this.router.navigate(['../list'], { relativeTo: this.route });
+                                              })
+                                              );
+}
 
 
 
@@ -60,10 +74,4 @@ export class FamilleDetailComponent implements OnInit {
               this.server_error = error.error ; this.snackBar.open('Erreur');
               console.warn(this.server_error); }
           ); }
-
-  onDelete() {
-    this.service.delete_element(this.famille.id, 'famille').
-    subscribe(() => { this.snackBar.open('Element supprimer', '' , {duration: 1000, });
-                      this.router.navigate(['../list'], { relativeTo: this.route } ) ; });
-                    }
 }

@@ -1,8 +1,0 @@
-<header class="mat-elevation-z1 mat-typography">
-  <app-search-box [model]="model"   (elements$)="updateResults($event)"> 
-  </app-search-box>
-  <app-nav-bar [nav_module]="'produits'" *ngIf="!isSearchActive"></app-nav-bar>
-  </header>
-
-<app-famille-list [familles]="familles"></app-famille-list>
-

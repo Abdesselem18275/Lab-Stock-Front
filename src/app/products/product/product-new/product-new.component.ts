@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsDataService } from '../../service/products-data.service';
 import { MatSnackBar } from '@angular/material';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -43,6 +45,12 @@ export class ProductNewComponent implements OnInit {
   ngOnInit() {
     this.service.get_elements('famille').subscribe( (familles: Famille[]) => this.familles = familles);
     this.service.get_elements('laboratoire').subscribe( (laboratoires: Laboratoire[]) => this.laboratoires = laboratoires);
+
+    const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
+    console.warn(element_save);
+    fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(
+      () =>  {   const element_submit: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
+                       element_submit.click(); });
   }
 
   onSubmit() {

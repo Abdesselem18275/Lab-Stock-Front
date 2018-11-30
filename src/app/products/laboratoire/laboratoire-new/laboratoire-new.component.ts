@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsDataService } from '../../service/products-data.service';
 import { MatSnackBar } from '@angular/material';
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -29,6 +31,11 @@ export class LaboratoireNewComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
+    fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(
+      () =>  {   const element_submit: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
+                       element_submit.click(); });
 
   }
 

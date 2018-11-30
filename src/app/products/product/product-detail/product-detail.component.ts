@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap} from 'rxjs/operators';
+import { switchMap, debounceTime} from 'rxjs/operators';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Product , Famille , Laboratoire} from 'src/app/model';
 import { ProductsDataService } from '../../service/products-data.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { fromEvent } from 'rxjs';
 
 
 
@@ -20,6 +21,7 @@ export class ProductDetailComponent implements OnInit {
   familles: Famille[];
   laboratoires: Laboratoire[];
   productForm: FormGroup;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -52,6 +54,19 @@ export class ProductDetailComponent implements OnInit {
                     this.product = Product.fromJson(jsonItem);
                     this._updateFrom(this.product); } );
 
+    const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
+    fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(
+      () =>  {   const element_submit: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
+                       element_submit.click(); });
+
+    const element_delete: HTMLElement = document.getElementById('delete_ico') as HTMLElement ;
+    fromEvent(element_delete, 'click').pipe(debounceTime(500)).subscribe(
+      () => this.service.delete_element(this.product.id, 'product').
+                           subscribe(() => { this.snackBar.open('Element supprimer', '' , {duration: 1000, });
+                                             this.router.navigate(['../list'], { relativeTo: this.route });
+                                              })
+                                              );
+
     }
 
 
@@ -72,9 +87,6 @@ export class ProductDetailComponent implements OnInit {
     }); }
 
   onSubmit() {
-
-    const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
-    element.click();
     this.product = Product.fromFrom(this.productForm, this.product.id);
     this.service.update_element(this.product.id, JSON.stringify(this.product), 'product').
           subscribe((product: Product) =>  {
@@ -82,10 +94,4 @@ export class ProductDetailComponent implements OnInit {
               this.snackBar.open('Element ajouter', '' , {duration: 1000, }); },
               error => {this.server_error = error.error ; this.snackBar.open('Erreur');  console.warn(this.server_error); }
           ); }
-
-  onDelete() {
-    this.service.delete_element(this.product.id, 'product').
-    subscribe(() => { this.snackBar.open('Element supprimer', '' , {duration: 1000, });
-                      this.router.navigate(['../list'], { relativeTo: this.route } ) ; });
-                    }
 }

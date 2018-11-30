@@ -1,0 +1,49 @@
+@import '~@angular/material/theming';
+@import '../../../app-themes.scss';
+
+:host {
+ margin : 0 0 0.4em 0;
+}
+
+header 
+{
+  padding : 1em 1em 0 1em; 
+  background-color: mat-color($app-primary);
+}
+
+.header-list 
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.header-detail 
+ {
+   display : flex ; 
+   
+ }
+
+ .header-spacer {
+  flex: 1 1 auto;
+}
+
+.icon-style {
+  margin: 0em 0 0.67em 0;
+  color: white; 
+}
+
+#save_ico {
+  margin: 0em 0.67em 0.67em 1em;  
+}
+
+#back_icon 
+{
+  padding: 0.67em 0 0.67em 0.67em;   
+}
+
+#head_text {
+  font-size: 1em;
+  padding:0 0 0 2em;
+  padding-top: 0.2em;
+}

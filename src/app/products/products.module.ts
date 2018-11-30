@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from '../material';
-
+import {SharedModule} from 'src/app/shared/shared.module';
 
 import {ProductsComponent } from './products/products.component';
 import {ProductsRoutingModule } from './products-routing.module';
@@ -15,6 +15,7 @@ import { FamilleModule } from './famille/famille.module';
     CommonModule,
     BrowserAnimationsModule,
     MaterialModule,
+    SharedModule,
     ProductModule,
     LaboratoireModule,
     FamilleModule,

@@ -142,14 +142,14 @@ export class NavPath {
     module: string;
     label: string ;
     path: string ;
-    icon_name: string ;
+    element_name: string ;
     params: any;
 
-    constructor(module: string , label: string , path: string, icon_name: string, params?: any) {
+    constructor(module: string , label: string , path: string, element_name: string, params?: any) {
         this.module = module;
         this.label = label;
         this.path = path;
-        this.icon_name = icon_name;
+        this.element_name = element_name;
         this.params = params || null;
     }
 

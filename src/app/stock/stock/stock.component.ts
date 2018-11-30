@@ -8,11 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class StockComponent implements OnInit {
 
   isSearchActive: Boolean ;
-  model: String ;
   constructor() {}
 
   ngOnInit() {
-    this.model = 'product';
   }
 
 

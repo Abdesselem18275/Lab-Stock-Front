@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material';
 import { SharedRoutingModule } from './shared-routing.module';
-import { SearchBoxComponent } from './search-box/search-box.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavSearchBoxComponent } from './nav-search-box/nav-search-box.component';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     MaterialModule,
     ReactiveFormsModule
   ],
-  declarations: [SearchBoxComponent, NavBarComponent],
-  exports: [SearchBoxComponent, NavBarComponent]
+  declarations: [ NavBarComponent, NavSearchBoxComponent],
+  exports: [ NavBarComponent, NavSearchBoxComponent]
 })
 export class SharedModule { }

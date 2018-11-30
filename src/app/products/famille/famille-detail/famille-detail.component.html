@@ -1,10 +1,3 @@
-<header class="mat-elevation-z1 mat-typography">
-  <mat-icon [routerLink]="['../list']" id="back_ico" class="material-icons icon-style">arrow_back_ios</mat-icon>
-  <span  id="head_text" class="icon-style">Modifier Produit</span>
-  <span  class="header-spacer"></span>
-  <mat-icon (click)="onDelete()" class="icon-style material-icons ">delete</mat-icon>
-  <mat-icon  (click)="onSubmit()" id="save_ico" class="icon-style material-icons">save</mat-icon>
-</header>
 
 <form  [formGroup]="familleForm"  (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="famille" >
   

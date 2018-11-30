@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Famille } from 'src/app/model';
 import { ProductsDataService } from '../../service/products-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-famille-list',
@@ -10,14 +11,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FamilleListComponent implements OnInit {
 
-  @Input() familles: Famille[];
-
-  constructor(private familleData: ProductsDataService , private route: ActivatedRoute) {
-  }
-
-  is_empty(): boolean {return false; }
+  value: string;
+  familles: Famille[];
+  params: any[];
+  constructor(private productData: ProductsDataService , private route: ActivatedRoute) { }
 
   ngOnInit() {
-   }
+    this.route.queryParamMap.pipe(
+      switchMap(value => this.productData.get_elements_test('famille', value))).subscribe(
+        (familles => {this.familles = familles; })); }
+
 
 }
