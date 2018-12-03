@@ -1,0 +1,82 @@
+@import '~@angular/material/theming';
+@import '../../../app-themes.scss';
+
+
+
+.full-width
+{
+    width:100%;
+}
+
+.form-gutter
+{
+    margin : 0 0.67em 0 0.67em; 
+}
+
+.field-gutter {
+    margin : 0 0 0 0;
+
+}
+
+.field-face {
+   font-size: 0.88em;
+   font-weight: 500;
+    
+}
+
+div {
+    display : flex ; 
+    justify-content: space-between;
+}
+
+h5 {
+    font-weight: 500;
+    color: mat-color($app-primary);
+}
+
+div mat-form-field {
+    
+    width : 47%;
+    
+}
+
+
+.header-spacer {
+    flex: 1 1 auto;
+  }
+
+
+   
+header 
+   {
+     display : flex ; 
+     background-color: mat-color($app-primary);
+     padding : 0 0 0 0.67em ;
+     margin :  0 0 0.67em 0 ;
+     
+   }
+
+.icon-style {
+    margin: 0.67em 0 0.67em 0;
+    color: white; 
+  }
+
+#save_ico {
+    margin: 0.67em 0.67em 0.67em 1em;  
+}
+
+#back_icon 
+{
+    padding: 0.67em 0 0.67em 0.67em;   
+}
+
+#head_text {
+    font-size: 1em;
+    margin: 1.33em 0 0.67em 1.33em;
+}
+
+button 
+{
+    width : 100%;
+    margin-top : 1.33em;
+}

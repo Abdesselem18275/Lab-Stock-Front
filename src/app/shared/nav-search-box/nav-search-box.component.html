@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="no-gutter">
 
-  <mat-icon *ngIf="!searchBoxActive"  class="material-icons menu-gutter">menu</mat-icon>
+  <app-lab-menu *ngIf="!searchBoxActive"  class="menu-gutter"></app-lab-menu>
 
 
   <mat-icon *ngIf="searchBoxActive" (click)="toggle()" class="material-icons menu-gutter arrow-face">arrow_back_ios</mat-icon>
@@ -13,5 +13,5 @@
   </form>
 
   <mat-icon *ngIf="!searchBoxActive"  (click)="toggle()"  class="icon-gutter material-icons ">search</mat-icon>
-  <mat-icon routerLink="./{{active_element}}/new"  *ngIf="!searchBoxActive"  class="icon-gutter material-icons">add</mat-icon>
+  <mat-icon (click)="to_add_element()"  *ngIf="!searchBoxActive"  class="icon-gutter material-icons">add</mat-icon>
 </mat-toolbar>  

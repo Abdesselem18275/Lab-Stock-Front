@@ -1,0 +1,57 @@
+
+<form  [formGroup]="transProductForm"  (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="transProduct" #f="ngForm">
+    
+  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+    <mat-select placeholder="Produit" formControlName="produit" required>
+        <mat-option *ngFor="let produit of produits" [value]="produit.id">
+          {{produit.designation}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="server_error.produit">{{server_error.produit}}</mat-error>
+</mat-form-field>
+
+<mat-form-field class="full-width field-gutter field-face" appearance="fill">
+  <mat-select placeholder="Type" formControlName="trans_type" required>
+      <mat-option  [value]="'IN'">
+        Entree
+      </mat-option>
+      <mat-option  [value]="'OUT'">
+        Sortie
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="server_error.trans_type">{{server_error.trans_type}}</mat-error>
+</mat-form-field>
+
+<mat-divider></mat-divider>
+
+<mat-form-field class=" full-width field-gutter field-face" appearance="fill">
+  <mat-label>numero de lot</mat-label>
+  <input matInput formControlName="numero_lot" required>
+  <mat-error *ngIf="server_error.numero_lot">{{server_error.numero_lot}}</mat-error>
+</mat-form-field>
+
+
+
+<mat-form-field class=" full-width field-gutter field-face" appearance="fill">
+  <mat-label>quantite</mat-label>
+  <input matInput formControlName="quantite" required>
+  <mat-error *ngIf="server_error.quantite">{{server_error.quantite}}</mat-error>
+</mat-form-field>
+
+<mat-divider></mat-divider>
+
+
+<mat-form-field class="  full-width field-gutter field-face" appearance="fill">
+  <input matInput formControlName="peremption_date" [matDatepicker]="picker" placeholder="Date de peremption">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+
+  <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>
+</form>
+
+
+
+
+

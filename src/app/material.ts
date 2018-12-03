@@ -9,6 +9,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/';
+
 
 
 
@@ -19,9 +23,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
   // tslint:disable-next-line:max-line-length
   imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule,
             MatTabsModule, MatListModule, MatInputModule, MatAutocompleteModule,
-            MatSelectModule, MatSnackBarModule, MatGridListModule],
+            MatSelectModule, MatSnackBarModule, MatGridListModule, MatMenuModule,
+            MatDatepickerModule, MatNativeDateModule],
+
   exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule,
             MatTabsModule, MatListModule, MatInputModule, MatAutocompleteModule,
-             MatSelectModule, MatSnackBarModule, MatGridListModule],
+             MatSelectModule, MatSnackBarModule, MatGridListModule, MatMenuModule,
+             MatDatepickerModule],
 })
 export class MaterialModule {}

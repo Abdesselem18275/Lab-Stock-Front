@@ -1,5 +1,6 @@
 import { FormGroup } from '@angular/forms';
 
+
 export class Product {
     id: number ;
     famille: any ;
@@ -53,7 +54,7 @@ export class Product {
             testContenant : form.value.conditionnement.testContenant,
             cmm :  form.value.stock.cmm,
             StockMiniMois : form.value.stock.stockMiniMois,
-            creation_date : '2018-08-08'
+            creation_date : form.value.stock.creation_date
            });
 
     }
@@ -99,6 +100,7 @@ export class Laboratoire {
 export class TransProduct {
     id: number ;
     produit: any ;
+    trans_type: string;
     numero_lot: number ;
     quantite: number ;
     modification_date: string ;
@@ -108,6 +110,7 @@ export class TransProduct {
     constructor(obj?: any) {
         this.id = obj && obj.id || null ;
         this.produit = obj && obj.produit || null ;
+        this.trans_type = obj && obj.trans_type || null ;
         this.numero_lot = obj && obj.numero_lot || null ;
         this.quantite = obj && obj.quantite || null ;
         this.modification_date = obj && obj.modification_date || null ;
@@ -118,6 +121,7 @@ export class TransProduct {
         return new TransProduct({
             id: json['id'],
             produit: Product.fromJson(json['produit']),
+            trans_type: json['trans_type'],
             numero_lot: json['numero_lot'],
             quantite: json['quantite'],
             modification_date: json['modification_date'],
@@ -129,6 +133,7 @@ export class TransProduct {
         return new TransProduct({
             id : id,
             produit : form.value.produit,
+            trans_type : form.value.trans_type,
             numero_lot : form.value.numero_lot,
             quantite : form.value.quantite,
             modification_date :  form.value.modification_date,

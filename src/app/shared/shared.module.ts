@@ -7,6 +7,7 @@ import { MaterialModule } from '../material';
 import { SharedRoutingModule } from './shared-routing.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NavSearchBoxComponent } from './nav-search-box/nav-search-box.component';
+import { LabMenuComponent } from './lab-menu/lab-menu.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { NavSearchBoxComponent } from './nav-search-box/nav-search-box.component
     MaterialModule,
     ReactiveFormsModule
   ],
-  declarations: [ NavBarComponent, NavSearchBoxComponent],
-  exports: [ NavBarComponent, NavSearchBoxComponent]
+  declarations: [ NavBarComponent, NavSearchBoxComponent, LabMenuComponent],
+  exports: [ NavBarComponent, NavSearchBoxComponent, LabMenuComponent]
 })
 export class SharedModule { }

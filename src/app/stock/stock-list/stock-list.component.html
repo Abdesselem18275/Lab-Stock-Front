@@ -1,11 +1,12 @@
-<div  *ngFor="let transProducts of transProducts" >
+<div  [routerLink]="['../', transProduct.id]" class="mat-typography" *ngFor="let transProduct of transProducts" >
   <article >
     <div> 
-        <h4><span>{{transProducts.numero_lot}}</span> - {{transProducts.produit.designation}}</h4>
-        <h5>{{transProducts.produit.famille.designation}}</h5>  
+        <h4><span>{{transProduct.produit.designation}}</span>  &nbsp;x&nbsp;  {{transProduct.quantite}}</h4>
+        <h5><span>{{transProduct.produit.famille.designation}}</span>-{{transProduct.produit.laboratoire.designation}}</h5>  
     </div>
     <h5>
-      <div>{{transProducts.modification_date}}</div>
+      <div>{{transProduct.modification_date |date }}</div>
+      <div>lot n° {{transProduct.numero_lot}}</div>
     </h5>
     
   </article>

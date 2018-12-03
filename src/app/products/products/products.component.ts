@@ -12,6 +12,13 @@ export class ProductsComponent implements OnInit {
   isListActive: boolean  ;
   isNewActive: boolean ;
   constructor(private navService: NavBarService , private route: ActivatedRoute , private router: Router) {
+
+    router.url.indexOf('list') === -1 ?
+    this.isListActive = false :
+    this.isListActive = true ;
+    router.url.indexOf('new') === -1 ?
+    this.isNewActive = false :
+    this.isNewActive = true ;
   }
 
   ngOnInit() {

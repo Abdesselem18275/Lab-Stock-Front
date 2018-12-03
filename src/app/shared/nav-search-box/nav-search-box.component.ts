@@ -15,15 +15,16 @@ export class NavSearchBoxComponent implements OnInit {
   value: string ;
   searchFrom = new FormGroup({
   searchBar: new FormControl()});
-  active_element: string;
+  active_path: string;
 
   constructor(private navService: NavBarService , private route: ActivatedRoute, private el: ElementRef, private router: Router) {
   }
 
   ngOnInit() {
 
-    this.active_element = this.navService.get_active_element();
-
+    this.active_path = this.navService.get_active_path();
+    console.warn(this.active_path);
+    console.warn(this.navService.get_active_link());
     fromEvent(this.el.nativeElement, 'keyup').pipe(
            map((e: any) => e.target.value), debounceTime(500), distinctUntilChanged(),
            filter((value: String) => value.length > 1 )).
@@ -40,5 +41,9 @@ export class NavSearchBoxComponent implements OnInit {
        this.searchFrom.reset();
        this.router.navigate([this.navService.get_active_path()]);
      }
+}
+
+   to_add_element() {
+     this.router.navigate([this.navService.get_active_navpath().path.replace('list', 'new')], { relativeTo: this.route } );
 }
 }

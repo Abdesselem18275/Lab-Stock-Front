@@ -18,7 +18,7 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navpaths = this.navService.get_navpath(this.nav_module);
+    this.navpaths = this.navService.get_navpaths(this.nav_module);
 
   }
   set_active_link(label: string) {
