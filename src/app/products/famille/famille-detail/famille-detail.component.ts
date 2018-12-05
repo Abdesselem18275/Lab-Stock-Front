@@ -6,6 +6,7 @@ import { ProductsDataService } from '../../service/products-data.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { fromEvent } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class FamilleDetailComponent implements OnInit {
     private service: ProductsDataService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    private datepipe: DatePipe) {
 
       this.familleForm = this.fb.group({
         designation : ['', Validators.required]
@@ -62,9 +64,9 @@ export class FamilleDetailComponent implements OnInit {
 
   onSubmit() {
 
-    const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
-    element.click();
     this.famille.designation = this.familleForm.value.designation  ;
+    this.famille.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+
     this.service.update_element(this.famille.id, JSON.stringify(this.famille), 'famille').
           subscribe(
             (famille: Famille) =>  {

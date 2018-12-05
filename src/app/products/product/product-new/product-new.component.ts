@@ -6,6 +6,7 @@ import { ProductsDataService } from '../../service/products-data.service';
 import { MatSnackBar } from '@angular/material';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class ProductNewComponent implements OnInit {
     private service: ProductsDataService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private router: Router ) {
+    private router: Router,
+    public datepipe: DatePipe ) {
       this.productForm = this.fb.group({
         designation : ['', Validators.required],
         reference : ['', Validators.required],
@@ -54,10 +56,9 @@ export class ProductNewComponent implements OnInit {
   }
 
   onSubmit() {
-
-    const element: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
-    element.click();
     this.product = Product.fromFrom(this.productForm, 0);
+    this.product.creation_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.product.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
     this.service.add_element(JSON.stringify(this.product), 'product').
     subscribe(
      () =>  {

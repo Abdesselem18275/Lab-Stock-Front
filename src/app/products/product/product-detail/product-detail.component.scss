@@ -29,9 +29,10 @@ div {
     justify-content: space-between;
 }
 
-h5 {
+h6 {
     font-weight: 500;
     color: mat-color($app-primary);
+    margin: 0.2em 0 1.2em 0;
 }
 
 div mat-form-field {
@@ -41,42 +42,3 @@ div mat-form-field {
 }
 
 
-.header-spacer {
-    flex: 1 1 auto;
-  }
-
-
-   
-header 
-   {
-     display : flex ; 
-     background-color: mat-color($app-primary);
-     padding : 0 0 0 0.67em ;
-     margin :  0 0 0.67em 0 ;
-     
-   }
-
-.icon-style {
-    margin: 0.67em 0 0.67em 0;
-    color: white; 
-  }
-
-#save_ico {
-    margin: 0.67em 0.67em 0.67em 1em;  
-}
-
-#back_icon 
-{
-    padding: 0.67em 0 0.67em 0.67em;   
-}
-
-#head_text {
-    font-size: 1em;
-    margin: 1.33em 0 0.67em 1.33em;
-}
-
-button 
-{
-    width : 100%;
-    margin-top : 1.33em;
-}

@@ -6,6 +6,7 @@ import { ProductsDataService } from '../../service/products-data.service';
 import { MatSnackBar } from '@angular/material';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class FamilleNewComponent implements OnInit {
     private service: ProductsDataService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private router: Router ) {
+    private router: Router,
+    private datepipe: DatePipe ) {
       this.familleForm = this.fb.group({
         designation : ['', Validators.required]
       });
@@ -40,7 +42,9 @@ export class FamilleNewComponent implements OnInit {
   }
 
   onSubmit() {
-    this.famille = this.familleForm.value.designation  ;
+    this.famille = new Famille({designation: this.familleForm.value.designation});
+    this.famille.creation_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.famille.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
     this.service.add_element(JSON.stringify(this.famille), 'famille').
     subscribe(
      () =>  {

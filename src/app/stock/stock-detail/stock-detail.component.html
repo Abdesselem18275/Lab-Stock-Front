@@ -2,12 +2,12 @@
 <form  [formGroup]="transProductForm"  (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="transProduct" #f="ngForm">
     
   <mat-form-field class="full-width field-gutter field-face" appearance="fill">
-    <mat-select placeholder="Produit" formControlName="produit" required>
-        <mat-option *ngFor="let produit of produits" [value]="produit.id">
-          {{produit.designation}}
+    <mat-select placeholder="Produit" formControlName="product" required>
+        <mat-option *ngFor="let product of products" [value]="product.id">
+          {{product.designation}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="server_error.produit">{{server_error.produit}}</mat-error>
+      <mat-error *ngIf="server_error.product">{{server_error.product}}</mat-error>
 </mat-form-field>
 
 <mat-form-field class="full-width field-gutter field-face" appearance="fill">
@@ -26,8 +26,8 @@
 
 <mat-form-field class=" full-width field-gutter field-face" appearance="fill">
   <mat-label>numero de lot</mat-label>
-  <input matInput formControlName="numero_lot" required>
-  <mat-error *ngIf="server_error.numero_lot">{{server_error.numero_lot}}</mat-error>
+  <input matInput formControlName="code_lot" required>
+  <mat-error *ngIf="server_error.code_lot">{{server_error.code_lot}}</mat-error>
 </mat-form-field>
 
 
@@ -50,6 +50,8 @@
 
   <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>
 </form>
+
+<app-log-info [element]="transProduct"></app-log-info>
 
 
 

@@ -6,6 +6,7 @@ import { ProductsDataService } from '../../service/products-data.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { fromEvent } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class LaboratoireDetailComponent implements OnInit {
     private service: ProductsDataService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private router: Router) {
+    private router: Router,
+    private datepipe: DatePipe) {
 
       this.laboratoireForm = this.fb.group({
         designation : ['', Validators.required]
@@ -40,7 +42,7 @@ export class LaboratoireDetailComponent implements OnInit {
     const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
     console.warn(element_save);
     fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(
-      () =>  {   const element_submit: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
+      () =>  {   const element_submit: HTMLElement = document.getElementById('laboratoire-submit-button') as HTMLElement ;
                        element_submit.click(); });
 
     const element_delete: HTMLElement = document.getElementById('delete_ico') as HTMLElement ;
@@ -63,6 +65,7 @@ export class LaboratoireDetailComponent implements OnInit {
 
   onSubmit() {
     this.laboratoire.designation = this.laboratoireForm.value.designation ;
+    this.laboratoire.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
     this.service.update_element(this.laboratoire.id, JSON.stringify(this.laboratoire), 'laboratoire').
           subscribe(
             (laboratoire: Laboratoire) =>  {

@@ -18,8 +18,8 @@ export class StockDetailComponent implements OnInit {
 
   transProduct: TransProduct ;
   server_error: any;
-  produit: Product ;
-  produits: Product[];
+  product: Product ;
+  products: Product[];
   transProductForm: FormGroup;
 
 
@@ -32,9 +32,9 @@ export class StockDetailComponent implements OnInit {
     public datepipe: DatePipe) {
 
       this.transProductForm = this.fb.group({
-        produit : ['', Validators.required],
+        product : ['', Validators.required],
         trans_type : ['', Validators.required],
-        numero_lot : ['', Validators.required],
+        code_lot : ['', Validators.required],
         quantite : ['', Validators.required],
         peremption_date : ['', Validators.required],
       });
@@ -42,7 +42,7 @@ export class StockDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.get_elements('product').subscribe((products: Product[]) => this.produits = products);
+    this.service.get_elements('product').subscribe((products: Product[]) => this.products = products);
     this.route.paramMap.pipe(
          switchMap((params: ParamMap) => this.service.get_element(params.get('id'), 'transaction'))).
          subscribe((jsonItem: any) => {
@@ -69,9 +69,9 @@ export class StockDetailComponent implements OnInit {
 
   private _updateFrom (transProduct: TransProduct) {
     this.transProductForm.patchValue({
-      produit : transProduct.produit !== null ? transProduct.produit.id : '',
+      product : transProduct.product !== null ? transProduct.product.id : '',
       trans_type : transProduct.trans_type,
-      numero_lot : transProduct.numero_lot,
+      code_lot : transProduct.code_lot,
       quantite : transProduct.quantite,
       peremption_date : transProduct.peremption_date
     }); }
@@ -80,6 +80,7 @@ export class StockDetailComponent implements OnInit {
     this.transProduct = TransProduct.fromForm(this.transProductForm, this.transProduct.id);
 
     this.transProduct.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+    this.transProduct.creation_date = this.datepipe.transform(Date.parse(this.transProduct.creation_date), 'yyyy-MM-dd');
     this.transProduct.peremption_date = this.datepipe.transform(Date.parse(this.transProduct.peremption_date), 'yyyy-MM-dd');
 
     this.service.update_element(this.transProduct.id, JSON.stringify(this.transProduct), 'transaction').

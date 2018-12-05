@@ -34,7 +34,7 @@
 
       
       <mat-divider></mat-divider>
-      <h5>Conditionnement</h5>
+      <h6>Conditionnement</h6>
       
     <div formGroupName="conditionnement">
         
@@ -54,11 +54,9 @@
     </div>
 
     <mat-divider></mat-divider>
-    <h5>stock</h5>
+    <h6>stock</h6>
     
     <div formGroupName="stock">
-        
-
         
       <mat-form-field class=" field-gutter field-face" appearance="fill">
           <mat-label>CMM</mat-label>
@@ -77,6 +75,7 @@
     <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>
   </form>
 
+<app-log-info [element]="product"></app-log-info>
 
 
 

@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { SharedInjectablesService } from './shared/service/shared-injectables.service';
 import { StockModule } from './stock/stock.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { StockModule } from './stock/stock.module';
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [ProductsDataInjectables, SharedInjectablesService],
+  providers: [ProductsDataInjectables, SharedInjectablesService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

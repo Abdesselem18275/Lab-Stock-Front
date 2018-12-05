@@ -20,7 +20,7 @@ import { StockNewComponent } from './stock-new/stock-new.component';
     ReactiveFormsModule ,
     StockRoutingModule
   ],
-  declarations: [StockComponent, StockListComponent, StockDetailComponent, StockNewComponent],
-  providers: [DatePipe]
+  declarations: [StockComponent, StockListComponent, StockDetailComponent, StockNewComponent]
+
 })
 export class StockModule { }

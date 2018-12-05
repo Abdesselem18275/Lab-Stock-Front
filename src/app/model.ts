@@ -8,6 +8,7 @@ export class Product {
     designation: string ;
     reference: string ;
     creation_date: string ;
+    modification_date: string ;
     contenantCoffret: number ;
     testContenant: number ;
     cmm: number ;
@@ -20,6 +21,7 @@ export class Product {
         this.designation = obj && obj.designation || null ;
         this.reference = obj && obj.reference || null ;
         this.creation_date = obj && obj.creation_date || null ;
+        this.modification_date = obj && obj.modification_date || null ;
         this.contenantCoffret = obj && obj.contenantCoffret || null ;
         this.testContenant = obj && obj.testContenant || null ;
         this.cmm = obj && obj.cmm || null ;
@@ -34,6 +36,7 @@ export class Product {
             designation: json['designation'],
             reference: json['reference'],
             creation_date: json['creation_date'],
+            modification_date: json['modification_date'],
             contenantCoffret: json['contenantCoffret'],
             testContenant: json['testContenant'],
             cmm: json['cmm'],
@@ -53,8 +56,7 @@ export class Product {
             contenantCoffret : form.value.conditionnement.contenantCoffret,
             testContenant : form.value.conditionnement.testContenant,
             cmm :  form.value.stock.cmm,
-            StockMiniMois : form.value.stock.stockMiniMois,
-            creation_date : form.value.stock.creation_date
+            StockMiniMois : form.value.stock.stockMiniMois
            });
 
     }
@@ -64,9 +66,13 @@ export class Product {
 export class Famille {
     id: number ;
     designation: string ;
+    creation_date: string ;
+    modification_date: string ;
     constructor(obj?: any) {
         this.id = obj && obj.id || null;
         this.designation = obj && obj.designation || null;
+        this.creation_date = obj && obj.creation_date || null ;
+        this.modification_date = obj && obj.modification_date || null ;
     }
 
     public static fromJson(json: Object): Famille {
@@ -74,6 +80,8 @@ export class Famille {
         return new Famille({
             id: json['id'],
             designation: json['designation'],
+            creation_date: json['creation_date'],
+            modification_date: json['modification_date'],
         }); }
         return null;
     }
@@ -82,9 +90,13 @@ export class Famille {
 export class Laboratoire {
     id: number ;
     designation: string ;
+    creation_date: string ;
+    modification_date: string ;
     constructor(obj?: any) {
         this.id = obj && obj.id || null;
         this.designation = obj && obj.designation || null;
+        this.creation_date = obj && obj.creation_date || null ;
+        this.modification_date = obj && obj.modification_date || null ;
     }
 
     public static fromJson(json: Object): Laboratoire {
@@ -92,6 +104,8 @@ export class Laboratoire {
             return new Laboratoire({
                 id: json['id'],
                 designation: json['designation'],
+                creation_date: json['creation_date'],
+                modification_date: json['modification_date'],
             }); }
             return null;
         }
@@ -99,32 +113,35 @@ export class Laboratoire {
 
 export class TransProduct {
     id: number ;
-    produit: any ;
+    product: any ;
     trans_type: string;
-    numero_lot: number ;
+    code_lot: string ;
     quantite: number ;
     modification_date: string ;
+    creation_date: string ;
     peremption_date: string ;
 
 
     constructor(obj?: any) {
         this.id = obj && obj.id || null ;
-        this.produit = obj && obj.produit || null ;
+        this.product = obj && obj.product || null ;
         this.trans_type = obj && obj.trans_type || null ;
-        this.numero_lot = obj && obj.numero_lot || null ;
+        this.code_lot = obj && obj.code_lot || null ;
         this.quantite = obj && obj.quantite || null ;
         this.modification_date = obj && obj.modification_date || null ;
+        this.creation_date = obj && obj.creation_date || null ;
         this.peremption_date = obj && obj.peremption_date || null ;
     }
 
     public static fromJson(json: Object): TransProduct {
         return new TransProduct({
             id: json['id'],
-            produit: Product.fromJson(json['produit']),
+            product: Product.fromJson(json['product']),
             trans_type: json['trans_type'],
-            numero_lot: json['numero_lot'],
+            code_lot: json['code_lot'],
             quantite: json['quantite'],
             modification_date: json['modification_date'],
+            creation_date: json['creation_date'],
             peremption_date: json['peremption_date']
         }
         );
@@ -132,11 +149,12 @@ export class TransProduct {
     public static fromForm(form: FormGroup , id: number ): TransProduct {
         return new TransProduct({
             id : id,
-            produit : form.value.produit,
+            product : form.value.product,
             trans_type : form.value.trans_type,
-            numero_lot : form.value.numero_lot,
+            code_lot : form.value.code_lot,
             quantite : form.value.quantite,
             modification_date :  form.value.modification_date,
+            creation_date :  form.value.creation_date,
             peremption_date : form.value.peremption_date
            });
     }

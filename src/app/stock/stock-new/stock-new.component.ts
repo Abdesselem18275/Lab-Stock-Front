@@ -17,23 +17,21 @@ export class StockNewComponent implements OnInit {
 
   transProduct: TransProduct ;
   server_error: any;
-  produit: Product ;
-  produits: Product[];
+  product: Product ;
+  products: Product[];
   transProductForm: FormGroup;
 
 
   constructor(
-    private route: ActivatedRoute,
     private service: ProductsDataService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private router: Router,
     public datepipe: DatePipe) {
 
       this.transProductForm = this.fb.group({
-        produit : ['', Validators.required],
+        product : ['', Validators.required],
         trans_type : ['', Validators.required],
-        numero_lot : ['', Validators.required],
+        code_lot : ['', Validators.required],
         quantite : ['', Validators.required],
         peremption_date : ['', Validators.required],
       });
@@ -41,7 +39,7 @@ export class StockNewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.get_elements('product').subscribe((products: Product[]) => this.produits = products);
+    this.service.get_elements('product').subscribe((products: Product[]) => this.products = products);
     const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
     fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(
       () =>  {   const element_submit: HTMLElement = document.getElementById('submit-button') as HTMLElement ;
@@ -54,8 +52,9 @@ export class StockNewComponent implements OnInit {
   onSubmit() {
     this.transProduct = TransProduct.fromForm(this.transProductForm, 0);
 
-    this.transProduct.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
-    this.transProduct.peremption_date = this.datepipe.transform(Date.parse(this.transProduct.peremption_date), 'yyyy-MM-dd');
+    this.transProduct.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.transProduct.creation_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+    this.transProduct.peremption_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
 
     this.service.add_element(JSON.stringify(this.transProduct), 'transaction').
           subscribe((transProduct: TransProduct) =>  {

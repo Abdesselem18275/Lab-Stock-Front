@@ -6,6 +6,7 @@ import { ProductsDataService } from '../../service/products-data.service';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { fromEvent } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -28,7 +29,8 @@ export class ProductDetailComponent implements OnInit {
     private service: ProductsDataService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    private router: Router) {
+    private router: Router ,
+    private datepipe: DatePipe) {
 
       this.productForm = this.fb.group({
         designation : ['', Validators.required],
@@ -87,7 +89,11 @@ export class ProductDetailComponent implements OnInit {
     }); }
 
   onSubmit() {
+    const creation_date = this.product.creation_date;
     this.product = Product.fromFrom(this.productForm, this.product.id);
+    this.product.creation_date  = creation_date;
+    this.product.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+
     this.service.update_element(this.product.id, JSON.stringify(this.product), 'product').
           subscribe((product: Product) =>  {
               this.product = Product.fromJson(product);
