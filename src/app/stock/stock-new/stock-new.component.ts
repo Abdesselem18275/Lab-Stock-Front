@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransProduct, Product } from 'src/app/model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsDataService } from 'src/app/products/service/products-data.service';
 import { MatSnackBar } from '@angular/material';
 import { DatePipe } from '@angular/common';
@@ -26,7 +26,9 @@ export class StockNewComponent implements OnInit {
     private service: ProductsDataService,
     private fb: FormBuilder,
     public snackBar: MatSnackBar,
-    public datepipe: DatePipe) {
+    public datepipe: DatePipe,
+    private route: ActivatedRoute,
+    private router: Router) {
 
       this.transProductForm = this.fb.group({
         product : ['', Validators.required],
@@ -52,14 +54,13 @@ export class StockNewComponent implements OnInit {
   onSubmit() {
     this.transProduct = TransProduct.fromForm(this.transProductForm, 0);
 
-    this.transProduct.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
-    this.transProduct.creation_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
+    this.transProduct.creation_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+    this.transProduct.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
     this.transProduct.peremption_date = this.datepipe.transform(new Date(), 'yyyy-MM-dd');
-
     this.service.add_element(JSON.stringify(this.transProduct), 'transaction').
-          subscribe((transProduct: TransProduct) =>  {
-              this.transProduct = TransProduct.fromJson(transProduct);
-              this.snackBar.open('Element ajouter', '' , {duration: 1000, }); },
+          subscribe(() =>  {
+              this.snackBar.open('Element ajouter', '' , {duration: 1000, });
+              this.router.navigate(['../list'], { relativeTo: this.route } ); },
               error => {this.server_error = error.error ; this.snackBar.open('Erreur');  console.warn(this.server_error); }
           ); }
 

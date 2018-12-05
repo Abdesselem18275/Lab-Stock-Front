@@ -77,10 +77,10 @@ export class StockDetailComponent implements OnInit {
     }); }
 
   onSubmit() {
+    const creation_date = this.transProduct.creation_date;
     this.transProduct = TransProduct.fromForm(this.transProductForm, this.transProduct.id);
-
+    this.transProduct.creation_date = creation_date;
     this.transProduct.modification_date = this.datepipe.transform(new Date(), 'yyyy-MM-ddThh:mm');
-    this.transProduct.creation_date = this.datepipe.transform(Date.parse(this.transProduct.creation_date), 'yyyy-MM-dd');
     this.transProduct.peremption_date = this.datepipe.transform(Date.parse(this.transProduct.peremption_date), 'yyyy-MM-dd');
 
     this.service.update_element(this.transProduct.id, JSON.stringify(this.transProduct), 'transaction').
