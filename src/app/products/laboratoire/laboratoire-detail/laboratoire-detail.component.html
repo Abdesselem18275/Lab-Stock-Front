@@ -2,7 +2,7 @@
 
 <form  [formGroup]="laboratoireForm"  (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="laboratoire" >
   
-  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+  <mat-form-field class="full-width field-gutter field-face" appearance="outline">
       <mat-label>Designation</mat-label>
       <input matInput formControlName="designation" required>
       <mat-error *ngIf="server_error?.designation">{{server_error.designation}}</mat-error>

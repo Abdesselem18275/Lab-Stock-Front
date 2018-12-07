@@ -1,19 +1,20 @@
 
 <form  [formGroup]="productForm"  (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="product" #f="ngForm">
     
-    <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+    <mat-form-field class="full-width field-gutter field-face" appearance="outline">
         <mat-label>Designation</mat-label>
         <input matInput formControlName="designation" required>
         <mat-error *ngIf="server_error?.designation">{{server_error.designation}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+    <mat-form-field class="full-width field-gutter field-face" appearance="outline">
             <mat-label>Reference</mat-label>
             <input matInput formControlName="reference" required>
             <mat-error *ngIf="server_error?.Reference">{{server_error.Reference}}</mat-error>
         </mat-form-field>
   
-    <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+    <mat-form-field class="full-width field-gutter field-face" appearance="outline">
+            <mat-label>Famille</mat-label>
         <mat-select placeholder="Famille" formControlName="famille" required>
             <mat-option *ngFor="let famille of familles" [value]="famille.id">
               {{famille.designation}}
@@ -22,7 +23,8 @@
           <mat-error *ngIf="server_error.famille">{{server_error.famille}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+    <mat-form-field class="full-width field-gutter field-face" appearance="outline">
+            <mat-label>Laboratoire</mat-label>
             <mat-select placeholder="Laboratoire"  formControlName="laboratoire" required>
                 <mat-option *ngFor="let laboratoire of laboratoires" [value]="laboratoire.id">
                   {{laboratoire.designation}}
@@ -38,7 +40,7 @@
       
     <div formGroupName="conditionnement">
         
-      <mat-form-field class=" field-gutter field-face" appearance="fill">
+      <mat-form-field class=" field-gutter field-face" appearance="outline">
           <mat-label>Contenant par coffret</mat-label>
           <input matInput formControlName="contenantCoffret" required>
           <mat-error *ngIf="server_error.contenantCoffret">{{server_error.contenantCoffret}}</mat-error>
@@ -46,7 +48,7 @@
 
     
       
-      <mat-form-field class=" field-gutter field-face" appearance="fill">
+      <mat-form-field class=" field-gutter field-face" appearance="outline">
           <mat-label>Test par contenant</mat-label>
           <input matInput formControlName="testContenant" required>
           <mat-error *ngIf="server_error.testContenant">{{server_error.testContenant}}</mat-error>
@@ -58,13 +60,13 @@
     
     <div formGroupName="stock">
         
-      <mat-form-field class=" field-gutter field-face" appearance="fill">
+      <mat-form-field class=" field-gutter field-face" appearance="outline">
           <mat-label>CMM</mat-label>
           <input matInput formControlName="cmm" required>
           <mat-error *ngIf="server_error.cmm">{{server_error.cmm}}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class=" field-gutter field-face" appearance="fill">
+      <mat-form-field class=" field-gutter field-face" appearance="outline">
           <mat-label>Stock mini par mois </mat-label>
           <input matInput formControlName="stockMiniMois" required>
           <mat-error *ngIf="server_error.stockMiniMois">{{server_error.stockMiniMois}}</mat-error>

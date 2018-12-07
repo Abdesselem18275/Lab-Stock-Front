@@ -14,7 +14,8 @@ export class NavBarService {
     new NavPath('produits', 'FAMILLES', '../products/famille/list', 'famille'),
     new NavPath('stock', 'TOUT', '/stock/list', 'stock'),
     new NavPath('stock', 'ENTREE', '/stock/list', 'stock', JSON.parse('{"trans_type":"IN"}')),
-    new NavPath('stock', 'SORTIE', '/stock/list', 'stock', JSON.parse('{"trans_type":"OUT"}'))
+    new NavPath('stock', 'SORTIE', '/stock/list', 'stock', JSON.parse('{"trans_type":"OUT"}')),
+    new NavPath('stock-order', '', '/stock-order/list', 'stock-order'),
   ];
 
 

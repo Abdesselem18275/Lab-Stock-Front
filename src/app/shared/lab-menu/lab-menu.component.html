@@ -1,20 +1,13 @@
 <button mat-icon-button [matMenuTriggerFor]="menu">
   <mat-icon>menu</mat-icon>
 </button>
-<mat-menu #menu="matMenu">
-  <button [routerLink]="['../products/product/list']" mat-menu-item>
-    <span>Produits</span>
+<mat-menu mat-elevation-z2 #menu="matMenu">
+  <button *ngFor="let link of navpaths"
+            mat-menu-item
+           [routerLink]="[link.path]" >
+    <mat-icon svgIcon={{link.icon}}></mat-icon>
+    <span>{{link.label}}</span>
+    
   </button>
-  <button [routerLink]="['../stock/list']" mat-menu-item>
-    <span>Journal</span>
-  </button>
-  <button mat-menu-item>
-    <span>Stock</span>
-  </button>
-  <button mat-menu-item>
-    <span>Profile</span>
-  </button>
-  <button mat-menu-item>
-    <span>Deconnexion</span>
-  </button>
+
 </mat-menu>

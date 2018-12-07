@@ -1,11 +1,15 @@
 <div  [routerLink]="['../', transProduct.id]" class="mat-typography" *ngFor="let transProduct of transProducts" >
   <article >
+    <mat-icon color="accent" *ngIf = "transProduct.trans_type ==='IN'">arrow_forward</mat-icon>
+    <mat-icon color="warn" *ngIf = "transProduct.trans_type ==='OUT'">arrow_back</mat-icon>
     <div> 
         <h4><span>{{transProduct.product.designation}}</span>  &nbsp;x&nbsp;  {{transProduct.quantite}}</h4>
         <h5><span>{{transProduct.product.famille.designation}}</span>-{{transProduct.product.laboratoire.designation}}</h5>  
     </div>
+    <span  class="header-spacer"></span>
+
     <h5>
-      <div>{{transProduct.modification_date |date }}</div>
+      <div>{{transProduct.modification_date |date : 'short' }}</div>
       <div>lot n° {{transProduct.code_lot}}</div>
     </h5>
     

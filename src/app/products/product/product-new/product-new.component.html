@@ -1,19 +1,19 @@
 
 <form  [formGroup]="productForm"  (ngSubmit)="onSubmit()" class="form-gutter"  #f="ngForm">
   
-  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+  <mat-form-field class="full-width field-gutter field-face" appearance="outline">
       <mat-label>Designation</mat-label>
       <input matInput formControlName="designation">
       <mat-error *ngIf="server_error?.designation">{{server_error.designation}}</mat-error>
   </mat-form-field>
 
-  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+  <mat-form-field class="full-width field-gutter field-face" appearance="outline">
           <mat-label>Reference</mat-label>
           <input matInput formControlName="reference">
           <mat-error *ngIf="server_error?.reference">{{server_error.reference}}</mat-error>
       </mat-form-field>
 
-  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+  <mat-form-field class="full-width field-gutter field-face" appearance="outline">
       <mat-select placeholder="Famille"  formControlName="famille">
           <mat-option *ngFor="let famille of familles" [value]="famille.id">
             {{famille.designation}}
@@ -22,7 +22,7 @@
         <mat-error *ngIf="server_error?.Famille">{{server_error.Famille}}</mat-error>
   </mat-form-field>
 
-  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+  <mat-form-field class="full-width field-gutter field-face" appearance="outline">
           <mat-select placeholder="Laboratoire"  formControlName="laboratoire">
               <mat-option *ngFor="let laboratoire of laboratoires" [value]="laboratoire.id">
                 {{laboratoire.designation}}
@@ -38,13 +38,13 @@
     
   <div formGroupName="conditionnement">
       
-    <mat-form-field class=" field-gutter field-face" appearance="fill">
+    <mat-form-field class=" field-gutter field-face" appearance="outline">
         <mat-label>Contenant par coffret</mat-label>
         <input matInput formControlName="contenantCoffret">
         <mat-error *ngIf="server_error?.contenantCoffret">{{server_error.contenantCoffret}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class=" field-gutter field-face" appearance="fill">
+    <mat-form-field class=" field-gutter field-face" appearance="outline">
         <mat-label>Test par contenant</mat-label>
         <input matInput formControlName="testContenant">
         <mat-error *ngIf="server_error?.testContenant">{{server_error.testContenant}}</mat-error>
@@ -58,13 +58,13 @@
       
 
       
-    <mat-form-field class=" field-gutter field-face" appearance="fill">
+    <mat-form-field class=" field-gutter field-face" appearance="outline">
         <mat-label>CMM</mat-label>
         <input matInput formControlName="cmm">
         <mat-error *ngIf="server_error?.cmm">{{server_error.cmm}}</mat-error>
     </mat-form-field>
 
-    <mat-form-field class=" field-gutter field-face" appearance="fill">
+    <mat-form-field class=" field-gutter field-face" appearance="outline">
         <mat-label>Stock mini par mois </mat-label>
         <input matInput formControlName="stockMiniMois">
         <mat-error *ngIf="server_error?.stockMiniMois">{{server_error.stockMiniMois}}</mat-error>

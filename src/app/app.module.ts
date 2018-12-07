@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { SharedInjectablesService } from './shared/service/shared-injectables.service';
 import { StockModule } from './stock/stock.module';
 import { DatePipe } from '@angular/common';
+import { StockOrderModule } from './stock-order/stock-order.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DatePipe } from '@angular/common';
     MaterialModule,
     ProductsModule,
     StockModule,
+    StockOrderModule,
     SharedModule,
     AppRoutingModule,
   ],

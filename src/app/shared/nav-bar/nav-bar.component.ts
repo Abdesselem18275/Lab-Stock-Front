@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {NavPath} from '../../model';
 import { NavBarService } from '../service/nav-bar.service';
 
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',

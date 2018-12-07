@@ -2,21 +2,32 @@
 
 article {
     display : flex ; 
-    justify-content: space-between;
-    padding: 0.4em 1.1em 0 1.1em ;
+    padding: 1em 1em 1em 1em ;
     font-family: 'Cabin', sans-serif;
+ }
+
+ .header-spacer {
+    flex: 1 1 auto;
+  }
+
+ div mat-icon 
+ {
+     float : left;
+     padding-right: 1em;
+     margin-top: auto;
+     margin-bottom: auto;
  }
  
  
  h4{
      
      font-weight: 900;
-     margin-bottom: -0.4em;
+     margin: 0 0 0 0;
  
  }
  
  h5 {
  
-     margin-bottom: 0.4em;
+    margin: 0 0 0 0;
  }
  

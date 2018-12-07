@@ -1,6 +1,6 @@
-<nav mat-tab-nav-bar class="nav-divider" color="accent">
+<nav mat-tab-nav-bar class="nav-divider" backgroundColor="primary" color="accent">
   
-  <a mat-tab-link *ngFor="let link of navpaths"
+  <a mat-tab-link  *ngFor="let link of navpaths"
      (click)="set_active_link(link.label)"
      [active] = "get_active_link() == link.label"
      [routerLink]="[link.path]"

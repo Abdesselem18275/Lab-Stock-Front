@@ -13,6 +13,8 @@ export class Product {
     testContenant: number ;
     cmm: number ;
     StockMiniMois: number ;
+    total_quantity: number;
+    total_stock_mois: number;
 
     constructor(obj?: any) {
         this.id = obj && obj.id || null ;
@@ -26,6 +28,8 @@ export class Product {
         this.testContenant = obj && obj.testContenant || null ;
         this.cmm = obj && obj.cmm || null ;
         this.StockMiniMois = obj && obj.StockMiniMois || null ;
+        this.total_quantity = obj && obj.total_quantity || null ;
+        this.total_stock_mois = obj && obj.total_stock_mois || null ;
     }
 
     public static fromJson(json: Object): Product {
@@ -40,7 +44,9 @@ export class Product {
             contenantCoffret: json['contenantCoffret'],
             testContenant: json['testContenant'],
             cmm: json['cmm'],
-            StockMiniMois: json['StockMiniMois']
+            StockMiniMois: json['StockMiniMois'],
+            total_quantity: json['total_quantity'],
+            total_stock_mois: json['total_stock_mois']
         }
 
 
@@ -167,13 +173,15 @@ export class NavPath {
     path: string ;
     element_name: string ;
     params: any;
+    icon: string;
 
-    constructor(module: string , label: string , path: string, element_name: string, params?: any) {
+    constructor(module: string , label: string , path: string, element_name: string, params?: any, icon?: string) {
         this.module = module;
         this.label = label;
         this.path = path;
         this.element_name = element_name;
         this.params = params || null;
+        this.icon = icon || null;
     }
 
 
