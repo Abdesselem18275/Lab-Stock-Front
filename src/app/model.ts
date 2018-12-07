@@ -126,6 +126,7 @@ export class TransProduct {
     modification_date: string ;
     creation_date: string ;
     peremption_date: string ;
+    remarks: string ;
 
 
     constructor(obj?: any) {
@@ -137,6 +138,7 @@ export class TransProduct {
         this.modification_date = obj && obj.modification_date || null ;
         this.creation_date = obj && obj.creation_date || null ;
         this.peremption_date = obj && obj.peremption_date || null ;
+        this.remarks = obj && obj.remarks || null ;
     }
 
     public static fromJson(json: Object): TransProduct {
@@ -148,7 +150,8 @@ export class TransProduct {
             quantite: json['quantite'],
             modification_date: json['modification_date'],
             creation_date: json['creation_date'],
-            peremption_date: json['peremption_date']
+            peremption_date: json['peremption_date'],
+            remarks: json['remarks']
         }
         );
     }
@@ -161,7 +164,8 @@ export class TransProduct {
             quantite : form.value.quantite,
             modification_date :  form.value.modification_date,
             creation_date :  form.value.creation_date,
-            peremption_date : form.value.peremption_date
+            peremption_date : form.value.peremption_date,
+            remarks : form.value.remarks
            });
     }
 }

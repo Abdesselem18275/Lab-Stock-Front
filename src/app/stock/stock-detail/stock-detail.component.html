@@ -27,7 +27,7 @@
 
 <mat-form-field class=" full-width field-gutter field-face" appearance="outline">
   <mat-label>numero de lot</mat-label>
-  <input matInput formControlName="code_lot" required>
+  <input type="number" matInput formControlName="code_lot" required>
   <mat-error *ngIf="server_error.code_lot">{{server_error.code_lot}}</mat-error>
 </mat-form-field>
 
@@ -35,17 +35,26 @@
 
 <mat-form-field class=" full-width field-gutter field-face" appearance="outline">
   <mat-label>quantite</mat-label>
-  <input matInput formControlName="quantite" required>
+  <input type="number" matInput formControlName="quantite" required>
   <mat-error *ngIf="server_error.quantite">{{server_error.quantite}}</mat-error>
 </mat-form-field>
 
 
 
 <mat-form-field class="  full-width field-gutter field-face" appearance="outline">
-  <input matInput formControlName="peremption_date" [matDatepicker]="picker" placeholder="Date de peremption">
+  <input  matInput formControlName="peremption_date" [matDatepicker]="picker" placeholder="Date de peremption">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+
+<mat-form-field class="  full-width field-gutter field-face" appearance="outline">
+    <mat-label>Remarque</mat-label>
+    <textarea matInput
+              cdkTextareaAutosize
+              formControlName="remarks"
+              cdkAutosizeMinRows="2"
+              cdkAutosizeMaxRows="5"></textarea>
+  </mat-form-field>
 
 
   <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>

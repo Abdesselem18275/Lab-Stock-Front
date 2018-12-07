@@ -24,13 +24,6 @@ const stockRoutes: Routes = [
      ]
 
    }
-
-
-
-
-
-
-
 ];
 
 @NgModule({

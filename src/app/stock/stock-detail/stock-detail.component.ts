@@ -37,6 +37,7 @@ export class StockDetailComponent implements OnInit {
         code_lot : ['', Validators.required],
         quantite : ['', Validators.required],
         peremption_date : ['', Validators.required],
+        remarks : ['', Validators.required]
       });
       this.server_error = {};
   }
@@ -73,7 +74,8 @@ export class StockDetailComponent implements OnInit {
       trans_type : transProduct.trans_type,
       code_lot : transProduct.code_lot,
       quantite : transProduct.quantite,
-      peremption_date : transProduct.peremption_date
+      peremption_date : transProduct.peremption_date,
+      remarks : transProduct.remarks
     }); }
 
   onSubmit() {

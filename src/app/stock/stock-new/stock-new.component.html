@@ -1,7 +1,7 @@
 
-<form  [formGroup]="transProductForm"  (ngSubmit)="onSubmit()" class="form-gutter" #f="ngForm">
+<form  [formGroup]="transProductForm"  (ngSubmit)="onSubmit()" class="form-gutter">
     
-  <mat-form-field class="full-width field-gutter field-face" appearance="fill">
+  <mat-form-field class="full-width field-gutter field-face" appearance="outline">
     <mat-select placeholder="Produit" formControlName="product" required>
         <mat-option *ngFor="let product of products" [value]="product.id">
           {{product.designation}}
@@ -10,7 +10,7 @@
       <mat-error *ngIf="server_error.product">{{server_error.product}}</mat-error>
 </mat-form-field>
 
-<mat-form-field class="full-width field-gutter field-face" appearance="fill">
+<mat-form-field class="full-width field-gutter field-face" appearance="outline">
   <mat-select placeholder="Type" formControlName="trans_type" required>
       <mat-option  [value]="'IN'">
         Entree
@@ -24,7 +24,7 @@
 
 <mat-divider></mat-divider>
 
-<mat-form-field class=" full-width field-gutter field-face" appearance="fill">
+<mat-form-field class=" full-width field-gutter field-face" appearance="outline">
   <mat-label>numero de lot</mat-label>
   <input matInput formControlName="code_lot" required>
   <mat-error *ngIf="server_error.code_lot">{{server_error.code_lot}}</mat-error>
@@ -32,7 +32,7 @@
 
 
 
-<mat-form-field class=" full-width field-gutter field-face" appearance="fill">
+<mat-form-field class=" full-width field-gutter field-face" appearance="outline">
   <mat-label>quantite</mat-label>
   <input matInput formControlName="quantite" required>
   <mat-error *ngIf="server_error.quantite">{{server_error.quantite}}</mat-error>
@@ -41,11 +41,17 @@
 <mat-divider></mat-divider>
 
 
-<mat-form-field class="  full-width field-gutter field-face" appearance="fill">
+<mat-form-field class="  full-width field-gutter field-face" appearance="outline">
   <input matInput formControlName="peremption_date" [matDatepicker]="picker" placeholder="Date de peremption">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+
+<mat-form-field class="  full-width field-gutter field-face" appearance="outline">
+    <mat-label>Remarque</mat-label>
+    <textarea matInput formControlName="remarks"
+></textarea>
+  </mat-form-field>
 
 
   <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>

@@ -36,6 +36,7 @@ export class StockNewComponent implements OnInit {
         code_lot : ['', Validators.required],
         quantite : ['', Validators.required],
         peremption_date : ['', Validators.required],
+        remarks : ['']
       });
       this.server_error = {};
   }
