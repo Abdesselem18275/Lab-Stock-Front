@@ -52,6 +52,8 @@ export class FamilleNewComponent implements OnInit {
         this.router.navigate(['../list'], { relativeTo: this.route } ); },
       error => {
         this.server_error = error ; this.snackBar.open('Erreur');
+        Object.keys(this.server_error).forEach(key => {
+        this.familleForm.controls[key].setErrors(this.server_error[key]); });
         console.warn(this.server_error); }
     );
   }

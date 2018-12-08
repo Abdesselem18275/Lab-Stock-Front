@@ -65,7 +65,10 @@ export class ProductNewComponent implements OnInit {
         this.snackBar.open('Element ajouter', '' , {duration: 1000, });
         this.router.navigate(['../list'], { relativeTo: this.route } ); },
       error => {
-        this.server_error = error ; this.snackBar.open('Erreur');
+        this.server_error = error;
+        Object.keys(this.server_error).forEach(key => {
+        this.productForm.controls[key].setErrors(this.server_error[key]); });
+        this.snackBar.open('Erreur');
         console.warn(this.server_error); }
     );
   }

@@ -14,11 +14,17 @@ export class LaboratoireListComponent implements OnInit {
   value: string;
   laboratoires: Laboratoire[];
   params: any[];
+  isComplete: boolean;
+  mode: string;
   constructor(private productData: ProductsDataService , private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isComplete = false;
+    this.mode = 'indeterminate';
     this.route.queryParamMap.pipe(
       switchMap(value => this.productData.get_elements_test('laboratoire', value))).subscribe(
-        (laboratoires => {this.laboratoires = laboratoires; })); }
+        (laboratoires => {this.laboratoires = laboratoires;
+                          this.isComplete = true;
+                          this.mode = 'determinate'; })); }
 
 }

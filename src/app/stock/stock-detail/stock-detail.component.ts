@@ -21,6 +21,8 @@ export class StockDetailComponent implements OnInit {
   product: Product ;
   products: Product[];
   transProductForm: FormGroup;
+  isComplete: boolean;
+  mode: string;
 
 
   constructor(
@@ -43,12 +45,16 @@ export class StockDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isComplete = false;
+    this.mode = 'indeterminate';
     this.service.get_elements('product').subscribe((products: Product[]) => this.products = products);
     this.route.paramMap.pipe(
          switchMap((params: ParamMap) => this.service.get_element(params.get('id'), 'transaction'))).
          subscribe((jsonItem: any) => {
                     this.transProduct = TransProduct.fromJson(jsonItem);
-                    this._updateFrom(this.transProduct); } );
+                    this._updateFrom(this.transProduct); 
+                    this.isComplete = true;
+                    this.mode = 'determinate';} );
 
     const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
     fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(

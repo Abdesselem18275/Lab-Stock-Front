@@ -18,6 +18,8 @@ export class LaboratoireDetailComponent implements OnInit {
   server_error: any;
   laboratoire: Laboratoire ;
   laboratoireForm: FormGroup;
+  isComplete: boolean;
+  mode: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,11 +35,15 @@ export class LaboratoireDetailComponent implements OnInit {
       this.server_error = {}; }
 
   ngOnInit() {
+    this.isComplete = false;
+    this.mode = 'indeterminate';
     this.route.paramMap.pipe(
          switchMap((params: ParamMap) => this.service.get_element(params.get('id'), 'laboratoire'))).
          subscribe((jsonItem: any) => {
                     this.laboratoire = Laboratoire.fromJson(jsonItem);
-                    this._updateFrom(this.laboratoire); } );
+                    this._updateFrom(this.laboratoire);
+                    this.isComplete = true;
+                    this.mode = 'determinate'; } );
 
     const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
     console.warn(element_save);
@@ -72,7 +78,10 @@ export class LaboratoireDetailComponent implements OnInit {
               this.laboratoire = Laboratoire.fromJson(laboratoire);
               this.snackBar.open('Element ajouter', '' , {duration: 1000, }); },
             error => {
-              this.server_error = error.error ; this.snackBar.open('Erreur');
+              this.server_error = error.error ;
+              Object.keys(this.server_error).forEach(key => {
+              this.laboratoireForm.controls[key].setErrors(this.server_error[key]); });
+              this.snackBar.open('Erreur');
               console.warn(this.server_error); }
           ); }
 }

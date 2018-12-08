@@ -13,12 +13,20 @@ export class StockListComponent implements OnInit {
   value: string;
   transProducts: TransProduct[];
   params: any[];
+  isComplete: boolean;
+  mode: string;
   constructor(private productData: ProductsDataService , private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isComplete = false;
+    this.mode = 'indeterminate';
     this.route.queryParamMap.pipe(
       switchMap(value => this.productData.get_elements_test('transaction', value))).subscribe(
-        (transProducts => {this.transProducts = transProducts; }));
+        (transProducts => {this.transProducts = transProducts;
+          this.isComplete = true;
+          this.mode = 'determinate'; }));
   }
+
+
 
 }

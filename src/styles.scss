@@ -2,3 +2,31 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.form-gutter
+{
+    margin : 1em 1em 0 1em; 
+}
+
+.field-gutter {
+    margin : 0 0 0 0;
+
+}
+
+.full-width
+{
+    width:100%;
+}
+
+.field-face {
+   font-size: 0.88em;
+   font-weight: 500;
+    
+}
+mat-progress-spinner 
+{
+    position : relative;
+    left : 45%;
+    top: 15em;
+    opacity: 0.5;
+}

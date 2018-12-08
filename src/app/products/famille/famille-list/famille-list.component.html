@@ -1,3 +1,11 @@
+<mat-progress-spinner *ngIf='!isComplete'
+class="example-margin"
+[color]="'primary'"
+[mode]="mode"
+[value]="50"
+diameter=50>
+</mat-progress-spinner>
+
 <div [routerLink]="['../', famille.id]" class="mat-typography" *ngFor="let famille of familles" >
   <article>
     <div> 

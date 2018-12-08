@@ -12,6 +12,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -20,15 +21,14 @@ import {MatNativeDateModule} from '@angular/material/';
 
 
 @NgModule({
-  // tslint:disable-next-line:max-line-length
   imports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule,
             MatTabsModule, MatListModule, MatInputModule, MatAutocompleteModule,
             MatSelectModule, MatSnackBarModule, MatGridListModule, MatMenuModule,
-            MatDatepickerModule, MatNativeDateModule],
+            MatDatepickerModule, MatNativeDateModule, MatProgressSpinnerModule],
 
   exports: [MatButtonModule, MatCheckboxModule, MatToolbarModule, MatIconModule,
             MatTabsModule, MatListModule, MatInputModule, MatAutocompleteModule,
              MatSelectModule, MatSnackBarModule, MatGridListModule, MatMenuModule,
-             MatDatepickerModule],
+             MatDatepickerModule, MatProgressSpinnerModule],
 })
 export class MaterialModule {}

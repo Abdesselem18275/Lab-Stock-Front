@@ -1,6 +1,14 @@
+<mat-progress-spinner *ngIf='!isComplete'
+class="example-margin"
+[color]="'primary'"
+[mode]="mode"
+[value]="50"
+diameter=50>
+</mat-progress-spinner>
+
 <div  [routerLink]="['../', transProduct.id]" class="mat-typography" *ngFor="let transProduct of transProducts" >
   <article >
-    <mat-icon color="accent" *ngIf = "transProduct.trans_type ==='IN'">arrow_forward</mat-icon>
+    <mat-icon [ngStyle]="{'color': 'green'}"  *ngIf = "transProduct.trans_type ==='IN'">arrow_forward</mat-icon>
     <mat-icon color="warn" *ngIf = "transProduct.trans_type ==='OUT'">arrow_back</mat-icon>
     <div> 
         <h4><span>{{transProduct.product.designation}}</span>  &nbsp;x&nbsp;  {{transProduct.quantite}}</h4>

@@ -1,3 +1,10 @@
+<mat-progress-spinner *ngIf='!isComplete'
+class="example-margin"
+[color]="'primary'"
+[mode]="mode"
+[value]="50"
+diameter=50>
+</mat-progress-spinner>
 
 <form  [formGroup]="productForm"  (ngSubmit)="onSubmit()" class="form-gutter" *ngIf="product" #f="ngForm">
     
@@ -77,7 +84,7 @@
     <button [style.display]="'none'" id='submit-button' type='submit' mat-raised-button color="primary">Confirmer</button>
   </form>
 
-<app-log-info [element]="product"></app-log-info>
+<app-log-info *ngIf='isComplete' [element]="product"></app-log-info>
 
 
 

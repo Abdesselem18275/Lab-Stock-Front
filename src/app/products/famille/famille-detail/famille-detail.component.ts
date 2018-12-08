@@ -18,6 +18,8 @@ export class FamilleDetailComponent implements OnInit {
   server_error: any;
   famille: Famille ;
   familleForm: FormGroup;
+  isComplete: boolean;
+  mode: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,11 +35,15 @@ export class FamilleDetailComponent implements OnInit {
       this.server_error = {}; }
 
   ngOnInit() {
+    this.isComplete = false;
+    this.mode = 'indeterminate';
     this.route.paramMap.pipe(
          switchMap((params: ParamMap) => this.service.get_element(params.get('id'), 'famille'))).
          subscribe((jsonItem: any) => {
                     this.famille = Famille.fromJson(jsonItem);
-                    this._updateFrom(this.famille); } );
+                    this._updateFrom(this.famille);
+                    this.isComplete = true;
+                    this.mode = 'determinate'; } );
 
     const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
     console.warn(element_save);

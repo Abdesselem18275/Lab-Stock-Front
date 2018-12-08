@@ -1,4 +1,3 @@
-
 article {
     display : flex ; 
     padding: 1em 1em 1em 1em ;
@@ -9,10 +8,10 @@ article {
     flex: 1 1 auto;
   }
 
- mat-icon 
+ div mat-icon 
  {
-     float : right;
-     padding: 0.5em 0 0 0;
+     padding-right: 1em;
+     padding-top: 0.5em;
 
  }
  
@@ -27,5 +26,5 @@ article {
  h5 {
  
     margin: 0 0 0 0;
+    
  }
- 

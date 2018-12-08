@@ -22,6 +22,8 @@ export class ProductDetailComponent implements OnInit {
   familles: Famille[];
   laboratoires: Laboratoire[];
   productForm: FormGroup;
+  isComplete: boolean;
+  mode: string;
 
 
   constructor(
@@ -48,13 +50,17 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isComplete = false;
+    this.mode = 'indeterminate';
     this.service.get_elements('famille').subscribe((familles: Famille[]) => this.familles = familles);
     this.service.get_elements('laboratoire').subscribe((laboratoires: Laboratoire[]) => this.laboratoires = laboratoires);
     this.route.paramMap.pipe(
          switchMap((params: ParamMap) => this.service.get_element(params.get('id'), 'product'))).
          subscribe((jsonItem: any) => {
                     this.product = Product.fromJson(jsonItem);
-                    this._updateFrom(this.product); } );
+                    this._updateFrom(this.product);
+                    this.isComplete = true;
+                    this.mode = 'determinate'; } );
 
     const element_save: HTMLElement = document.getElementById('save_ico') as HTMLElement ;
     fromEvent(element_save, 'click').pipe(debounceTime(500)).subscribe(
@@ -98,6 +104,11 @@ export class ProductDetailComponent implements OnInit {
           subscribe((product: Product) =>  {
               this.product = Product.fromJson(product);
               this.snackBar.open('Element ajouter', '' , {duration: 1000, }); },
-              error => {this.server_error = error.error ; this.snackBar.open('Erreur');  console.warn(this.server_error); }
+              error => {
+                         this.server_error = error.error;
+                         Object.keys(error.error).forEach(key => {
+                         this.productForm.controls[key].setErrors(error.error[key]); });
+                         this.snackBar.open('Erreur');
+                        }
           ); }
 }

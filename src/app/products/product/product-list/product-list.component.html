@@ -1,17 +1,29 @@
+<mat-progress-spinner *ngIf='!isComplete'
+class="example-margin"
+[color]="'primary'"
+[mode]="mode"
+[value]="50"
+diameter=50>
+</mat-progress-spinner>
+
 <div [routerLink]="['../', product.id]" class="mat-typography" *ngFor="let product of products" >
   <article>
-    <div> 
-        <h4><span>{{product.designation}}</span>  &nbsp;x&nbsp;  {{product.total_stock_mois}} </h4>
-        <h5>{{product.famille.designation}}</h5>  
-        <h5>cmm : {{product.cmm}}&nbsp;&nbsp;<span>mini : {{product.StockMiniMois}}</span></h5>
+    <div [ngSwitch]="stockAdvisor(product.id)">
+      <mat-icon color="warn" *ngSwitchCase="1">warning</mat-icon>
+      <mat-icon [ngStyle]="{'color': 'rgb(242,156,43)'}" *ngSwitchCase="2">warning</mat-icon>
+      <mat-icon [ngStyle]="{'color': 'green'}" *ngSwitchCase="3">check</mat-icon>
     </div>
-    <span  class="header-spacer"></span>
-   
-    <h5>
-      <div>{{product.modification_date |date : 'short' }}</div>
-      <div><mat-icon color="warn">warning</mat-icon></div>
-    </h5>
-    
+      <div> 
+          <h4><span>{{product.designation}}</span>  &nbsp;x&nbsp;  {{product.total_stock_mois}}</h4>
+          <h5><span>{{product.famille.designation}}</span>&nbsp;-&nbsp;{{product.laboratoire.designation}}</h5>  
+          <h5><span>Stock mini :</span> {{product.StockMiniMois}}</h5>
+      </div>
+      <span  class="header-spacer"></span>
+  
+      <div>
+        <h5>{{product.modification_date |date : 'short' }}</h5>
+
+      </div>
   </article>
 <mat-divider ></mat-divider>
 </div>

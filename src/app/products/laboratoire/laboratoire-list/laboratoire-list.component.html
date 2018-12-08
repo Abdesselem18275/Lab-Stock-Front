@@ -1,3 +1,11 @@
+<mat-progress-spinner *ngIf='!isComplete'
+class="example-margin"
+[color]="'primary'"
+[mode]="mode"
+[value]="50"
+diameter=50>
+</mat-progress-spinner>
+
 <div [routerLink]="['../', laboratoire.id]" class="mat-typography" *ngFor="let laboratoire of laboratoires" >
   <article>
     <div> 

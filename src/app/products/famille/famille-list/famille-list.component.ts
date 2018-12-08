@@ -14,12 +14,19 @@ export class FamilleListComponent implements OnInit {
   value: string;
   familles: Famille[];
   params: any[];
+  isComplete: boolean;
+  mode: string;
+
   constructor(private productData: ProductsDataService , private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.isComplete = false;
+    this.mode = 'indeterminate';
     this.route.queryParamMap.pipe(
       switchMap(value => this.productData.get_elements_test('famille', value))).subscribe(
-        (familles => {this.familles = familles; })); }
+        (familles => {this.familles = familles;
+          this.isComplete = true;
+          this.mode = 'determinate'; })); }
 
 
 }
