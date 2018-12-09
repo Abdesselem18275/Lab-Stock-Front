@@ -12,11 +12,11 @@ import { NavPath } from 'src/app/model';
 export class LabMenuComponent implements OnInit {
   navpaths: NavPath[] ;
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon('Produit', sanitizer.bypassSecurityTrustResourceUrl('src/assets/icons/familles_icon.svg'))
-    .addSvgIcon('Journal', sanitizer.bypassSecurityTrustResourceUrl('src/assets/icons/produits_icon.svg'))
-    .addSvgIcon('Commande', sanitizer.bypassSecurityTrustResourceUrl('src/assets/icons/produits_icon.svg'))
-    .addSvgIcon('Profile', sanitizer.bypassSecurityTrustResourceUrl('src/assets/icons/profile_icon.svg'))
-    .addSvgIcon('Deconnexion', sanitizer.bypassSecurityTrustResourceUrl('src/assets/icons/log_out_icon.svg'));
+    iconRegistry.addSvgIcon('Produit', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/familles_icon.svg'))
+    .addSvgIcon('Journal', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/produits_icon.svg'))
+    .addSvgIcon('Commande', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/order_icon.svg'))
+    .addSvgIcon('Profile', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/profile_icon.svg'))
+    .addSvgIcon('Deconnexion', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/log_out_icon.svg'));
   }
 
   ngOnInit() {
